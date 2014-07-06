@@ -8,23 +8,34 @@
  * Controller of the smartBuyPortalApp
  */
 
-var phonecatApp = angular.module('smartBuyPortalApp', []);
-
-phonecatApp
-  .controller('MainCtrl', function ($scope,backendService) {
+smartBuyPortalApp
+  .controller('MainCtrl', function ($scope,Delphiservice) {
 	$scope.awesomeThings = [
 	'HTML5 Boilerplate',
 	'AngularJS',
 	'Karma'
 	];
+
+        $scope.name = "World";
 	$scope.currentStatus=null;
+
+
 	$scope.init=function()
 	{
-		backendService.getStatus().then(function(status)
-		{
-              $scope.currentStatus=status;
-        });
-
+        //$scope.getStatus();
+        $scope.currentStatus={longtitude:40.01, latitude:100.1, speed:81.0, rpm:3000 };
 	};
+        $scope.getStatus=function()
+        {
+            //alert("getting status..")
+           // $scope.currentStatus={longtitude:40.01, latitude:100.1, speed:81.0, rpm:3000 };
+            Delphiservice.getStatus().then(function(status)
+            {
+                $scope.currentStatus=status;
+            },function(error){
+                alert(error);
+            });
+
+        };
   });
  

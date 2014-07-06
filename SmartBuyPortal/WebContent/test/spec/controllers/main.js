@@ -46,7 +46,7 @@ describe('Controller: MainCtrl', function () {
 
     it('should request current status when created', function () {
         spyOn(apiService, 'getStatus').andCallThrough();
-        scope.init();
+        scope.getStatus();
         expect(apiService.getStatus).toHaveBeenCalled();
 
         deferred.resolve(status);
@@ -57,9 +57,9 @@ describe('Controller: MainCtrl', function () {
 
     it('should request current status when using service', function () {
         var result=null;
-        $httpBackend.expectGET('API/DelphiService/GetStatus').respond(200,status,{},"success");
+        $httpBackend.expectGET('/API/DelphiService/GetStatus').respond(200,status,{},"success");
         spyOn(Delphiservice, 'getStatus').andCallThrough();
-        scope2.init();
+        scope2.getStatus();
         expect(Delphiservice.getStatus).toHaveBeenCalled();
         $httpBackend.flush();
         scope2.$apply();

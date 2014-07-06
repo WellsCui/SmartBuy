@@ -8,5 +8,4 @@
  *
  * Main module of the application.
  */
-angular
-  .module('smartBuyPortalApp', []);
+var smartBuyPortalApp=angular.module('smartBuyPortalApp', []);
