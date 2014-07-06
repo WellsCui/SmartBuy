@@ -21,9 +21,9 @@ describe('Service: Delphiservice', function () {
       $httpBackend.expectGET('API/DelphiService/GetStatus').respond(200,status,{},"success");
       debugger;
       //result=Delphiservice.getStatus();
-      Delphiservice.getStatus().then(function(respond)
+      Delphiservice.getStatus().then(function(data)
       {
-          result=respond.data;
+          result=data;
       });
       $httpBackend.flush();
       alert(result);
