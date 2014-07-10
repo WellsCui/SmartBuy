@@ -18,24 +18,26 @@ describe('Controller: MainCtrl', function () {
 
         }
     };
-    var Delphiservice;
+    var delphiservice;
     var $httpBackend;
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope, $q,_$httpBackend_,_Delphiservice_) {
-        scope = $rootScope.$new();
+
         q = $q;
         status={lontitude:40.01, latitude:100.1, spead:81.0, rpm:3000 };
 
+        scope = $rootScope.$new();
         MainCtrl = $controller('MainCtrl', {
             $scope: scope,
-            backendService: apiService
+            Delphiservice: apiService
         });
 
+        debugger;
         scope2 = $rootScope.$new();
-        Delphiservice=_Delphiservice_;
+        delphiservice=_Delphiservice_;
         MainCtrl2 = $controller('MainCtrl', {
             $scope: scope2,
-            backendService: _Delphiservice_
+            Delphiservice: delphiservice
         });
         $httpBackend=_$httpBackend_;
     }));
@@ -48,7 +50,6 @@ describe('Controller: MainCtrl', function () {
         spyOn(apiService, 'getStatus').andCallThrough();
         scope.getStatus();
         expect(apiService.getStatus).toHaveBeenCalled();
-
         deferred.resolve(status);
         scope.$apply();
         expect(scope.currentStatus).not.toBeNull();
@@ -57,10 +58,12 @@ describe('Controller: MainCtrl', function () {
 
     it('should request current status when using service', function () {
         var result=null;
-        $httpBackend.expectGET('/API/DelphiService/GetStatus').respond(200,status,{},"success");
-        spyOn(Delphiservice, 'getStatus').andCallThrough();
+        //$httpBackend.expectGET('/API/DelphiService/GetStatus')
+        $httpBackend.expectGET('http://localhost:8080/DelphiService/VehicleStatus')
+            .respond(200,status,{},"success");
+        spyOn(delphiservice, 'getStatus').andCallThrough();
         scope2.getStatus();
-        expect(Delphiservice.getStatus).toHaveBeenCalled();
+        expect(delphiservice.getStatus).toHaveBeenCalled();
         $httpBackend.flush();
         scope2.$apply();
         alert(scope2.currentStatus);

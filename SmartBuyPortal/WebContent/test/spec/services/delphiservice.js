@@ -18,7 +18,9 @@ describe('Service: Delphiservice', function () {
   it('should return status when getStatus called', function () {
       var result=null;
       expect(!!Delphiservice).toBe(true);
-      $httpBackend.expectGET('/API/DelphiService/GetStatus').respond(200,status,{},"success");
+      //$httpBackend.expectGET('/API/DelphiService/GetStatus')
+      $httpBackend.expectGET('http://localhost:8080/DelphiService/VehicleStatus')
+          .respond(200,status,{},"success");
       debugger;
       //result=Delphiservice.getStatus();
       Delphiservice.getStatus().then(function(data)

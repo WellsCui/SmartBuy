@@ -11,7 +11,9 @@ angular.module('smartBuyPortalApp')
   .service('Delphiservice', function Delphiservice($http) {
     // AngularJS will instantiate a singleton by calling "new" on this function
        this.getStatus=function() {
-            return $http.get('/API/DelphiService/GetStatus').then(
+            //return $http.get('/API/DelphiService/GetStatus')
+           return $http.get('http://localhost:8080/DelphiService/VehicleStatus')
+                .then(
                 function(respond){
                     return respond.data;
                 },
