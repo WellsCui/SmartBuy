@@ -9,7 +9,7 @@ describe('PhoneCat App', function () {
             ptor.ignoreSynchronization = true;
 
             browser.get('http://localhost:8000/app/test.html');
-            browser.debugger();
+            //browser.debugger();
         });
 
 
@@ -22,7 +22,7 @@ describe('PhoneCat App', function () {
 
             query.sendKeys('nexus');
             expect(phoneList.count()).toBe(1);
-
+            //browser.debugger();
             query.clear();
             query.sendKeys('motorola');
             expect(phoneList.count()).toBe(2);
