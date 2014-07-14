@@ -23,10 +23,16 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven { url "http://repo.spring.io/libs-release" }
+	maven { url 'http://repo.spring.io/milestone/'}
 }
+
+
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+	compile 'org.springframework.security:spring-security-web:4.0.0.M1'
+	compile 'org.springframework.security:spring-security-core:4.0.0.M1'
+	compile 'org.springframework.security:spring-security-config:4.0.0.M1'
     testCompile("junit:junit")
 }
 

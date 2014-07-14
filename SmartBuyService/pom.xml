@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springframework</groupId>
-    <artifactId>gs-rest-service</artifactId>
+    <groupId>com.smartbuy</groupId>
+    <artifactId>smartbuyservice</artifactId>
     <version>0.1.0</version>
 
     <parent>
@@ -18,10 +18,30 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        
+            <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-core</artifactId>
+	<version>3.2.4.RELEASE</version>
+   </dependency>
+   
+   <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-web</artifactId>
+	<version>3.2.4.RELEASE</version>
+   </dependency>
+   
+   <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-config</artifactId>
+	<version>3.2.4.RELEASE</version>
+   </dependency>    
+        
     </dependencies>
+    
 
     <properties>
-        <start-class>hello.Application</start-class>
+        <start-class>com.smartbuy.service.Application</start-class>
     </properties>
 
     <build>

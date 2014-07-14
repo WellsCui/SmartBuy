@@ -20,4 +20,11 @@ smartBuyPortalApp
         $httpProvider.defaults.headers["Access-Control-Allow-Origin"]="*";
         $httpProvider.defaults.headers["Access-Control-Allow-Methods"]="GET, POST, OPTIONS";
 
+
     });
+
+angular.module('smartBuyPortalApp').directive('ncgRequestVerificationToken', ['$http', function ($http) {
+    return function (scope, element, attrs) {
+        $http.defaults.headers.common['RequestVerificationToken'] = attrs.ncgRequestVerificationToken || "no request verification token";
+    };
+}]);

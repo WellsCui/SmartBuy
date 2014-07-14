@@ -34,7 +34,21 @@ smartBuyPortalApp
                 $scope.currentStatus=status;
                 //$scope.$apply();
             },function(error){
-                alert("error getting status.." + error);
+                throw new Error("error when get status.." + error);
+            });
+
+        };
+
+        $scope.updateStatus=function()
+        {
+
+            // $scope.currentStatus={longtitude:40.01, latitude:100.1, speed:81.0, rpm:3000 };
+            Delphiservice.updateStatus($scope.currentStatus).then(function(status)
+            {
+                $scope.currentStatus=status;
+                //$scope.$apply();
+            },function(error){
+                alert ("error when update status.." + error);
             });
 
         };

@@ -20,9 +20,6 @@ public class SimpleCORSFilter implements Filter {
 		response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
 		chain.doFilter(req, res);
 	}
-
 	public void init(FilterConfig filterConfig) {}
-
 	public void destroy() {}
-
 }
