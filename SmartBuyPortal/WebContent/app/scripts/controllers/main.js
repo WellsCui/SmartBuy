@@ -9,7 +9,7 @@
  */
 
 smartBuyPortalApp
-  .controller('MainCtrl', function ($scope,Delphiservice) {
+  .controller('MainCtrl', function ($scope,Delphiservice,AuthenticationService) {
 	$scope.awesomeThings = [
 	'HTML5 Boilerplate',
 	'AngularJS',
@@ -18,13 +18,22 @@ smartBuyPortalApp
 
     $scope.name = "World";
 	$scope.currentStatus=null;
-
+    $scope.accessToken=null;
 
 	$scope.init=function()
 	{
         //$scope.getStatus();
         $scope.currentStatus={longtitude:10.01, latitude:20.1, speed:21.0, rpm:1000 };
 	};
+        $scope.getAccessToken=function() {
+            AuthenticationService.getAccessToken().then(function(token)
+            {
+                $scope.accessToken=token;
+            },function(error){
+                alert ("error when get token.." + error);
+            });
+        }
+
         $scope.getStatus=function()
         {
 

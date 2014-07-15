@@ -20,10 +20,12 @@
 
   <h4>Karma</h4>
   <p>Spectacular Test Runner for JavaScript.</p>-->
+<button id="btngetAccessToken" ng-click="getAccessToken()">getAccessToken</button>
   <button id="btnGetVehicleStatus" ng-click="getStatus()">GetVehicleStatus</button>
     <button id="btnUpdateVehicleStatus" ng-click="updateStatus()">UpdateVehicleStatus</button>
     <p>
         current Vehicle Status:
     </p>
-    <label>longtitude: </label><label id="lbl_currentStatus_longtitude">{{currentStatus.longtitude}}</label>
+    <label>AccessToken: </label><label id="lbl_AccessToken">{{accessToken}}</label>
+<label>longtitude: </label><label id="lbl_currentStatus_longtitude">{{currentStatus.longtitude}}</label>
 </div>

@@ -1,5 +1,7 @@
 package com.smartbuy.services;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -30,4 +32,6 @@ public class DelphiServiceController {
 		status.setLatitude(status.getLatitude()+3);
 		return status;
 	}
+	
+	
 }

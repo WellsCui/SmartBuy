@@ -15,7 +15,8 @@ angular.module('smartBuyPortalApp')
 //        Access-Control-Allow-Methods: GET, POST, OPTIONS
 //        Access-Control-Allow-Headers: Content-Type, Accept, X-Requested-With, x-some-header
 
-        this.serviceUrl="http://192.168.73.128:8080/smartbuy-webapi/api/DelphiService/VehicleStatus";
+        //this.serviceUrl="http://192.168.73.128:8080/smartbuy-webapi/api/DelphiService/VehicleStatus";
+        this.serviceUrl="http://localhost:8080/smartbuy-webapi/api/DelphiService/VehicleStatus";
         this.getStatus = function () {
             //return $http.get('/API/DelphiService/GetStatus')
             return $http.get(this.serviceUrl,
@@ -46,7 +47,8 @@ angular.module('smartBuyPortalApp')
              })*/
             return $http.post(this.serviceUrl,status
                 ,{
-                    headers: {"Content-Type": "text/plain;charset=utf-8"}
+                    //headers: {"Content-Type": "text/plain;charset=utf-8"}
+                    headers: {"Content-Type": "application/json;charset=utf-8"}
                 }
             )
                 .then(
