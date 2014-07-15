@@ -1,7 +1,12 @@
 package com.smartbuy.security;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
@@ -27,5 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 
 		.anyRequest().authenticated().and().formLogin().loginPage("/login")
 				.permitAll();
-	}
+	}	
+	
 }

@@ -24,7 +24,7 @@ public class DelphiServiceController {
 	}
 	
 	@RequestMapping(value="/VehicleStatus",method=RequestMethod.POST,consumes={"text/plain", "application/*"})
-	@ResponseBody
+	//@ResponseBody
 	public  VehicleStatus UpdateStatus(@RequestBody VehicleStatus status,UriComponentsBuilder builder)
 	{
 		status.setLatitude(status.getLatitude()+3);

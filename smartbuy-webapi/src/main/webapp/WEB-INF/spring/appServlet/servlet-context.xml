@@ -73,7 +73,7 @@
 		secured-annotations="enabled" jsr250-annotations="enabled"
 		pre-post-annotations="enabled">
 	</security:global-method-security> -->
-<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
     <property name="messageConverters">
         <list>
             <ref bean="jsonMessageConverter" />
@@ -97,5 +97,5 @@
     class="org.springframework.http.converter.StringHttpMessageConverter" >
     <property name="supportedMediaTypes" value="text/plain" />
 </bean>
-
+ -->
 </beans>
