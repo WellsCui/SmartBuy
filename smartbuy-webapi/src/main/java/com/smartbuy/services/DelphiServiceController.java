@@ -3,6 +3,7 @@ package com.smartbuy.services;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
@@ -22,9 +23,9 @@ public class DelphiServiceController {
 		return status;
 	}
 	
-	@RequestMapping(value="/VehicleStatus",method=RequestMethod.POST)
+	@RequestMapping(value="/VehicleStatus",method=RequestMethod.POST,consumes={"text/plain", "application/*"})
 	@ResponseBody
-	public  VehicleStatus UpdateStatus(VehicleStatus status)
+	public  VehicleStatus UpdateStatus(@RequestBody VehicleStatus status,UriComponentsBuilder builder)
 	{
 		status.setLatitude(status.getLatitude()+3);
 		return status;

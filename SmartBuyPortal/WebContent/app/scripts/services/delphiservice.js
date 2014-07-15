@@ -38,8 +38,17 @@ angular.module('smartBuyPortalApp')
         };
 
         this.updateStatus=function(status){
-
-            return $http.post(this.serviceUrl,status)
+            /*return $http({
+             method: 'POST',
+             url: this.serviceUrl,
+             data: status,
+              headers: {"Content-Type": "application/json;charset=utf-8"}
+             })*/
+            return $http.post(this.serviceUrl,status
+                ,{
+                    headers: {"Content-Type": "text/plain;charset=utf-8"}
+                }
+            )
                 .then(
                 function (respond) {
                     return respond.data;

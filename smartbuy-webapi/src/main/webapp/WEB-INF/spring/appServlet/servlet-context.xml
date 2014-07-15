@@ -73,5 +73,29 @@
 		secured-annotations="enabled" jsr250-annotations="enabled"
 		pre-post-annotations="enabled">
 	</security:global-method-security> -->
+<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="messageConverters">
+        <list>
+            <ref bean="jsonMessageConverter" />
+            <ref bean="byteArrayMessageConverter"/>
+            <ref bean="stringMessageConverter"/>
+        </list>
+    </property>
+
+</bean>
+
+<bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" >
+    <property name="supportedMediaTypes" value="application/json" />
+</bean>
+
+<bean id="byteArrayMessageConverter"
+    class="org.springframework.http.converter.ByteArrayHttpMessageConverter" >
+    <property name="supportedMediaTypes" value="application/octet-stream" />
+</bean>
+
+<bean id="stringMessageConverter"
+    class="org.springframework.http.converter.StringHttpMessageConverter" >
+    <property name="supportedMediaTypes" value="text/plain" />
+</bean>
 
 </beans>
