@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().addFilterBefore(new SimpleCORSFilter(),ChannelProcessingFilter.class)
 		.authorizeRequests()	
-		 .antMatchers("/resources/**", "/signup", "/about","/api/**").permitAll()
+		 .antMatchers("/resources/**", "/signup", "/about", "/apilogin", "/api/**").permitAll()
 		 .antMatchers("/admin/**").hasRole("ADMIN") .antMatchers("/db/**")
 		 .access("hasRole('ROLE_ADMIN') and hasRole('ROLE_DBA')")
 		 

@@ -19,6 +19,10 @@ smartBuyPortalApp
     $scope.name = "World";
 	$scope.currentStatus=null;
     $scope.accessToken=null;
+        $scope.loginType="basic";
+        $scope.username="user";
+        $scope.password="password";
+        $scope.oauthToken="";
 
 	$scope.init=function()
 	{
@@ -26,7 +30,8 @@ smartBuyPortalApp
         $scope.currentStatus={longtitude:10.01, latitude:20.1, speed:21.0, rpm:1000 };
 	};
         $scope.getAccessToken=function() {
-            AuthenticationService.getAccessToken().then(function(token)
+            AuthenticationService.login($scope.loginType,$scope.username,$scope.password,$scope.oauthToken)
+                .then(function(token)
             {
                 $scope.accessToken=token;
             },function(error){

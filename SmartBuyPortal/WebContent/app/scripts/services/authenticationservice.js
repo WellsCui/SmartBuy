@@ -8,7 +8,7 @@
  * Service in the smartBuyPortalApp.
  */
 var accessToken=null;
-var accessTokenUrl="http://localhost:8080/smartbuy-webapi/api/accessToken";
+var accessTokenUrl="http://localhost:8080/smartbuy-webapi/apilogin?loginType={0}&&username={1}&&password={2}&&oauthToken={3}";
 angular.module('smartBuyPortalApp')
     .service('AuthenticationService', function AuthenticationService($http,$q) {
         // AngularJS will instantiate a singleton by calling "new" on this function
@@ -19,13 +19,17 @@ angular.module('smartBuyPortalApp')
 
         //this.serviceUrl="http://192.168.73.128:8080/smartbuy-webapi/api/DelphiService/VehicleStatus";
 
-        this.getAccessToken = function () {
-            //return $http.get('/API/DelphiService/GetStatus')
+        /*String loginType,
+        String username,
+        String password,
+        String oauthId,*/
+
+        this.login = function (loginType,username,password,oauthToken) {
             if (accessToken!=null)
             {
                 return $q.defer().resolve(accessToken);
             }
-            return $http.get(accessTokenUrl,
+            return $http.get(accessTokenUrl.format(loginType,username,password,oauthToken),
                 {
                     headers: {}
                 })
