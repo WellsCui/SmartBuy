@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +41,9 @@ public class AuthenticationController {
 		 // blog demo this is fine
 		 
 		 UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
-		 authenticationManager.authenticate(authRequest);
+		 Authentication auth= authenticationManager.authenticate(authRequest);
 		 
-		 if (authRequest.isAuthenticated())
+		 if (auth.isAuthenticated())
 		 {
 			   synchronized (session) {
 			     token = (String) session.getAttribute(CSRF_TOKEN_FOR_SESSION_ATTR_NAME);

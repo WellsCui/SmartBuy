@@ -26,12 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().addFilterBefore(new SimpleCORSFilter(),ChannelProcessingFilter.class)
 		.authorizeRequests()	
-		 .antMatchers("/resources/**", "/signup", "/about", "/apilogin", "/api/**").permitAll()
-		 .antMatchers("/admin/**").hasRole("ADMIN") .antMatchers("/db/**")
-		 .access("hasRole('ROLE_ADMIN') and hasRole('ROLE_DBA')")
-		 
-		.anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.permitAll();
+		 .antMatchers("/resources/**", "/signup", "/about", "/apilogin**").permitAll()
+		.antMatchers("/api/**").authenticated().and().authorizeRequests() 
+		 .antMatchers("/admin/**").hasRole("ADMIN") 
+		 .antMatchers("/db/**") .access("hasRole('ROLE_ADMIN') and hasRole('ROLE_DBA')")		 
+		.anyRequest().authenticated().and()		
+		.formLogin().loginPage("/login").permitAll();
+		
 	}	
 	
 }
