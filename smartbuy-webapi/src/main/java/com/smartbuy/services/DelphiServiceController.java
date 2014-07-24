@@ -7,6 +7,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.smartbuy.models.VehicleStatus;
+
 
 @RestController
 @RequestMapping(value="/api/DelphiService")

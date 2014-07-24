@@ -38,8 +38,7 @@ public class AuthenticationController {
 		 // init the token concurrently.
 		 // Notice: in real life I wouldn't synchronize on the session instance. 
 		 // This should be done on an attribute on the session. But for the 
-		 // blog demo this is fine
-		 
+		 // blog demo this is fine		 
 		 UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
 		 Authentication auth= authenticationManager.authenticate(authRequest);
 		 

@@ -1,4 +1,4 @@
-package com.smartbuy.services;
+package com.smartbuy.models;
 
 public class VehicleStatus {
 	private double latitude;

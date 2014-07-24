@@ -9,8 +9,9 @@
  */
 var accessToken=null;
 var accessTokenUrl="http://localhost:8080/smartbuy-webapi/apilogin?loginType={0}&&username={1}&&password={2}&&oauthToken={3}";
+var greetingUrl="http://192.168.227.150:8080/smartbuy-webapi/api/greeting";
 angular.module('smartBuyPortalApp')
-    .service('AuthenticationService', function AuthenticationService($http,$q) {
+    .service('AuthenticationService', function AuthenticationService($http,$q,Base64) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         //CORS Ajax
 //        Access-Control-Allow-Origin: *
@@ -25,24 +26,61 @@ angular.module('smartBuyPortalApp')
         String oauthId,*/
 
         this.login = function (loginType,username,password,oauthToken) {
-            if (accessToken!=null)
-            {
-                return $q.defer().resolve(accessToken);
-            }
-            return $http.get(accessTokenUrl.format(loginType,username,password,oauthToken),
+            this.setCredentials(username, password);
+            return $http.get(greetingUrl,
                 {
-                    headers: {}
+                    headers:
+                    {
+                        'Authorization':$http.defaults.headers.common.Authorization
+                    }
                 })
                 .then(
                 function (respond) {
-                    accessToken=respond.data;
-                    return accessToken;
+                    return respond.data;
                 },
                 function (error) {
                     throw new Error('Get status with Error: ' + error.data);
 
                 });
 
+            /* if (accessToken!=null)
+             {
+                 return $q.defer().resolve(accessToken);
+             }
+             return $http.get(accessTokenUrl.format(loginType,username,password,oauthToken),
+                 {
+                     headers: {}
+                 })
+                 .then(
+                 function (respond) {
+                     accessToken=respond.data;
+                     $cookieStore.put('accessToken',accessToken);
+                     *//*$http.defaults.headers.common['Authorization'] = 'Basic ' +
+                        base64.encode(username+":"+password)
+                        $cookieStore.get('authdata');*//*
+                    return accessToken;
+                },
+ http://192.168.227.150/               function (error) {
+                    throw new Error('Get status with Error: ' + error.data);
+
+                });*/
+
         };
+
+        //$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
+
+        this.setCredentials= function (username, password) {
+                var encoded = Base64.encode(username + ':' + password);
+                $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+               // $cookieStore.put('authdata', encoded);
+                return $http.defaults.headers.common.Authorization;
+            };
+        this. clearCredentials= function() {
+                document.execCommand("ClearAuthenticationCache");
+               // $cookieStore.remove('authdata');
+                $http.defaults.headers.common.Authorization = 'Basic ';
+
+        };
+
 
     });

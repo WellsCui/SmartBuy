@@ -99,9 +99,18 @@
 </bean>
  -->
  
+<!--  <bean id="simpleCORSFilter" class="com.smartbuy.security.SimpleCORSFilter">
+    <property name="csrfTokenRepository" ref="csrfTokenRepository" />
+</bean>
+
+ <bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
+    <property name="headerName" value="XSRF-TOKEN" />
+</bean> -->
+
  <security:http create-session="stateless" entry-point-ref="digestEntryPoint">   
    <!-- <http-basic /> -->
    <security:custom-filter ref="digestFilter" after="BASIC_AUTH_FILTER" />
+ <!--   <security:csrf token-repository-ref="csrfTokenRepository" /> -->
 </security:http>
  
 <bean id="digestFilter" class=

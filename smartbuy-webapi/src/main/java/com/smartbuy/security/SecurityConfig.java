@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -21,18 +23,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			throws Exception {
 		auth.inMemoryAuthentication().withUser("user").password("password")
 				.roles("USER");
+	}	
+		
+	protected void configure(HttpSecurity http) throws Exception {
+		HttpSessionCsrfTokenRepository csrfTokenRepository=new HttpSessionCsrfTokenRepository();
+		csrfTokenRepository.setHeaderName("XSRF-TOKEN");
+		SimpleCORSFilter simpleCORSFilter=new SimpleCORSFilter();
+		simpleCORSFilter.setCsrfTokenRepository(csrfTokenRepository);
+		http
+		.csrf().csrfTokenRepository(csrfTokenRepository).and()
+		.addFilterBefore(simpleCORSFilter, ChannelProcessingFilter.class)
+				.authorizeRequests()
+				.antMatchers("/resources/**", "/signup", "/about","/api/**",
+						"/apilogin**").permitAll().antMatchers("/admin/**")
+				.hasRole("ADMIN").antMatchers("/db/**")
+				.access("hasRole('ADMIN') and hasRole('DBA')")
+				//.antMatchers("/api/**").hasRole("USER")
+				.anyRequest()
+				.authenticated().and().httpBasic().and().formLogin()
+				.loginPage("/login").permitAll();
+
 	}
 
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().addFilterBefore(new SimpleCORSFilter(),ChannelProcessingFilter.class)
-		.authorizeRequests()	
-		 .antMatchers("/resources/**", "/signup", "/about", "/apilogin**").permitAll()
-		.antMatchers("/api/**").authenticated().and().authorizeRequests() 
-		 .antMatchers("/admin/**").hasRole("ADMIN") 
-		 .antMatchers("/db/**") .access("hasRole('ROLE_ADMIN') and hasRole('ROLE_DBA')")		 
-		.anyRequest().authenticated().and()		
-		.formLogin().loginPage("/login").permitAll();
-		
-	}	
-	
 }

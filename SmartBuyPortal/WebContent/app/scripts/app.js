@@ -24,7 +24,7 @@ if (!String.prototype.format) {
 var smartBuyPortalApp=angular.module('smartBuyPortalApp', []);
 smartBuyPortalApp
     .config(function($httpProvider){
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        //delete $httpProvider.defaults.headers.common['X-Requested-With'];
         $httpProvider.defaults.headers.common = {};
         $httpProvider.defaults.headers.post = {};
         $httpProvider.defaults.headers.put = {};
@@ -39,11 +39,10 @@ smartBuyPortalApp
        // $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
       //  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
-
     });
 
-angular.module('smartBuyPortalApp').directive('ncgRequestVerificationToken', ['$http', function ($http) {
+/*angular.module('smartBuyPortalApp').directive('ncgRequestVerificationToken', ['$http', function ($http) {
     return function (scope, element, attrs) {
         $http.defaults.headers.common['RequestVerificationToken'] = attrs.ncgRequestVerificationToken || "no request verification token";
     };
-}]);
+}]);*/
