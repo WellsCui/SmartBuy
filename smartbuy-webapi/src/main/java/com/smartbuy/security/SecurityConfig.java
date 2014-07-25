@@ -27,7 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 	protected void configure(HttpSecurity http) throws Exception {
 		HttpSessionCsrfTokenRepository csrfTokenRepository=new HttpSessionCsrfTokenRepository();
-		csrfTokenRepository.setHeaderName("XSRF-TOKEN");
+		//csrfTokenRepository.setHeaderName("X-XSRF-TOKEN");
+		csrfTokenRepository.setHeaderName("CSRF");
+		
 		SimpleCORSFilter simpleCORSFilter=new SimpleCORSFilter();
 		simpleCORSFilter.setCsrfTokenRepository(csrfTokenRepository);
 		http

@@ -8,7 +8,7 @@
  * Service in the smartBuyPortalApp.
  */
 angular.module('smartBuyPortalApp')
-    .service('Delphiservice', function Delphiservice($http) {
+    .service('Delphiservice', function Delphiservice($http,AuthenticationService) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         //CORS Ajax
 //        Access-Control-Allow-Origin: *
@@ -21,11 +21,7 @@ angular.module('smartBuyPortalApp')
             //return $http.get('/API/DelphiService/GetStatus')
             return $http.get(this.serviceUrl,
                 {
-                    headers: {
-                       // "Access-Control-Allow-Origin": "*",
-                        //"Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                        //"Access-Control-Allow-Headers": "Content-Type, Accept, X-Requested-With, x-some-header, Access-Control-Allow-Origin"
-                    }
+                    headers: AuthenticationService.buildCSRFHeader()
                 })
                 .then(
                 function (respond) {
@@ -48,7 +44,8 @@ angular.module('smartBuyPortalApp')
             return $http.post(this.serviceUrl,status
                 ,{
                     //headers: {"Content-Type": "text/plain;charset=utf-8"}
-                    headers: {"Content-Type": "application/json;charset=utf-8"}
+                    //headers: {"Content-Type": "application/json;charset=utf-8"}
+                    headers: AuthenticationService.buildCSRFHeader()
                 }
             )
                 .then(

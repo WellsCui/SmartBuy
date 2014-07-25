@@ -11,7 +11,9 @@ var accessToken=null;
 var accessTokenUrl="http://localhost:8080/smartbuy-webapi/apilogin?loginType={0}&&username={1}&&password={2}&&oauthToken={3}";
 var greetingUrl="http://localhost:8080/smartbuy-webapi/api/greeting";
 var CSRF_COOKIE_NAME="XSRF-TOKEN";
-var CSRF_HEADER_NAME="X-XSRF-TOKEN";
+//var CSRF_HEADER_NAME="X-XSRF-TOKEN";
+var CSRF_HEADER_NAME="CSRF";
+
 var Authorization_HEADER_NAME="Authorization";
 angular.module('smartBuyPortalApp')
     .service('AuthenticationService', function AuthenticationService($http,$cookies,$browser,$q,Base64) {
@@ -41,7 +43,8 @@ angular.module('smartBuyPortalApp')
                 .then(
                 function (respond) {
                     var currentCookies = $browser.cookies();
-                    $http.defaults.headers.common[CSRF_HEADER_NAME] = $cookies.get(CSRF_COOKIE_NAME)
+                    //$http.defaults.headers.common[CSRF_HEADER_NAME] = $cookies.get(CSRF_COOKIE_NAME)
+                    $http.defaults.headers.common[CSRF_HEADER_NAME] = $cookies.JSESSIONID;
                     return respond.data;
                 },
                 function (error) {
@@ -78,8 +81,9 @@ angular.module('smartBuyPortalApp')
             var header={};
             header[Authorization_HEADER_NAME]=$http.defaults.headers.common[Authorization_HEADER_NAME];
             var csrf_token=$http.defaults.headers.common[CSRF_HEADER_NAME];
-            if (csrf_token!=undefined)
-            header[CSRF_HEADER_NAME]=$http.defaults.headers.common[CSRF_HEADER_NAME];
+            if (csrf_token!=undefined) {
+                header[CSRF_HEADER_NAME] = $http.defaults.headers.common[CSRF_HEADER_NAME];
+            }
 
             return header;
 

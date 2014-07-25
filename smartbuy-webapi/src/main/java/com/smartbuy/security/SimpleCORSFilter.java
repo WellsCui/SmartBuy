@@ -43,13 +43,13 @@ public class SimpleCORSFilter implements Filter {
 			CsrfToken token=csrfTokenRepository.generateToken(request);
 			
 			csrfTokenRepository.saveToken(token,request,response);
-			Cookie tokenCookie=new Cookie(token.getHeaderName(),token.getToken());			
+			Cookie tokenCookie=new Cookie("XSRF-TOKEN",token.getToken());			
 			response.addCookie(tokenCookie);		    
 		}
 		
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,authorization,X-XSRF-TOKEN");
+		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,authorization,X-XSRF-TOKEN,CSRF");
 		
 		chain.doFilter(req, res);
 	}
@@ -72,7 +72,7 @@ public class SimpleCORSFilter implements Filter {
 	private CsrfToken getCsrfTokenFromHead(HttpServletRequest request)
 	{			
 		CsrfToken token= csrfTokenRepository.generateToken(request);
-		String tokenvalue= request.getHeader("X-XSRF-TOKEN");
+		String tokenvalue= request.getHeader(token.getHeaderName());
 		if (tokenvalue==null) return null;
 		return new DefaultCsrfToken(token.getHeaderName(), token.getParameterName(), tokenvalue);	
 				
