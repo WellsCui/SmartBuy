@@ -21,7 +21,7 @@ if (!String.prototype.format) {
     };
 }
 
-var smartBuyPortalApp=angular.module('smartBuyPortalApp', []);
+var smartBuyPortalApp=angular.module('smartBuyPortalApp', ['ng','ngCookies']);
 smartBuyPortalApp
     .config(function($httpProvider){
         //delete $httpProvider.defaults.headers.common['X-Requested-With'];

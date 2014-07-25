@@ -9,9 +9,12 @@
  */
 var accessToken=null;
 var accessTokenUrl="http://localhost:8080/smartbuy-webapi/apilogin?loginType={0}&&username={1}&&password={2}&&oauthToken={3}";
-var greetingUrl="http://192.168.227.150:8080/smartbuy-webapi/api/greeting";
+var greetingUrl="http://localhost:8080/smartbuy-webapi/api/greeting";
+var CSRF_COOKIE_NAME="XSRF-TOKEN";
+var CSRF_HEADER_NAME="X-XSRF-TOKEN";
+var Authorization_HEADER_NAME="Authorization";
 angular.module('smartBuyPortalApp')
-    .service('AuthenticationService', function AuthenticationService($http,$q,Base64) {
+    .service('AuthenticationService', function AuthenticationService($http,$cookies,$browser,$q,Base64) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         //CORS Ajax
 //        Access-Control-Allow-Origin: *
@@ -27,15 +30,18 @@ angular.module('smartBuyPortalApp')
 
         this.login = function (loginType,username,password,oauthToken) {
             this.setCredentials(username, password);
+            var header=this.buildCSRFHeader();
             return $http.get(greetingUrl,
                 {
-                    headers:
-                    {
+                    headers:header
+                   /* {
                         'Authorization':$http.defaults.headers.common.Authorization
-                    }
+                    }*/
                 })
                 .then(
                 function (respond) {
+                    var currentCookies = $browser.cookies();
+                    $http.defaults.headers.common[CSRF_HEADER_NAME] = $cookies.get(CSRF_COOKIE_NAME)
                     return respond.data;
                 },
                 function (error) {
@@ -66,6 +72,18 @@ angular.module('smartBuyPortalApp')
                 });*/
 
         };
+
+        this.buildCSRFHeader=function()
+        {
+            var header={};
+            header[Authorization_HEADER_NAME]=$http.defaults.headers.common[Authorization_HEADER_NAME];
+            var csrf_token=$http.defaults.headers.common[CSRF_HEADER_NAME];
+            if (csrf_token!=undefined)
+            header[CSRF_HEADER_NAME]=$http.defaults.headers.common[CSRF_HEADER_NAME];
+
+            return header;
+
+        }
 
         //$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
 

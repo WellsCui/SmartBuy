@@ -38,9 +38,10 @@ public class SimpleCORSFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) res;
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		//response.
-		if (loadCsrfToken(request)==null)		
+		if (getCsrfTokenFromHead(request)==null)		
 		{
 			CsrfToken token=csrfTokenRepository.generateToken(request);
+			
 			csrfTokenRepository.saveToken(token,request,response);
 			Cookie tokenCookie=new Cookie(token.getHeaderName(),token.getToken());			
 			response.addCookie(tokenCookie);		    
@@ -66,6 +67,15 @@ public class SimpleCORSFilter implements Filter {
 			}
 		}
 		return null;
+	}
+	
+	private CsrfToken getCsrfTokenFromHead(HttpServletRequest request)
+	{			
+		CsrfToken token= csrfTokenRepository.generateToken(request);
+		String tokenvalue= request.getHeader("X-XSRF-TOKEN");
+		if (tokenvalue==null) return null;
+		return new DefaultCsrfToken(token.getHeaderName(), token.getParameterName(), tokenvalue);	
+				
 	}
 
 	public void init(FilterConfig filterConfig) {}
