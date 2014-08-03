@@ -1,5 +1,7 @@
 package com.smartbuy.services;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
@@ -7,6 +9,9 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartbuy.models.VehicleStatus;
 
 
@@ -27,12 +32,17 @@ public class DelphiServiceController {
 		return status;
 	}
 	
-	@RequestMapping(value="/VehicleStatus",method=RequestMethod.POST,consumes={"text/plain", "application/*"})
+	@RequestMapping(value="/VehicleStatus",method=RequestMethod.POST
+	//		,consumes={"text/plain", "application/*"}
+	)
 	//@ResponseBody
-	public  VehicleStatus UpdateStatus(@RequestBody VehicleStatus status,UriComponentsBuilder builder)
+	//public  VehicleStatus UpdateStatus(@RequestBody VehicleStatus status,UriComponentsBuilder builder)
+	public  VehicleStatus UpdateStatus(@RequestBody String status) throws JsonParseException, JsonMappingException, IOException
 	{
-		status.setLatitude(status.getLatitude()+3);
-		return status;
+		ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
+		VehicleStatus vehicleStatus = mapper.readValue(status, VehicleStatus.class);
+		vehicleStatus.setLatitude(vehicleStatus.getLatitude()+3);
+		return vehicleStatus;
 	}
 	
 	

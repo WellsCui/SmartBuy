@@ -1,4 +1,5 @@
 package com.smartbuy.security;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -20,9 +21,9 @@ import org.springframework.stereotype.Component;
 
 //@Component
 public class SimpleCORSFilter implements Filter {
-	//@Autowired
+	// @Autowired
 	private CsrfTokenRepository csrfTokenRepository;
-	
+
 	public CsrfTokenRepository getCsrfTokenRepository() {
 		return csrfTokenRepository;
 	}
@@ -31,55 +32,67 @@ public class SimpleCORSFilter implements Filter {
 		this.csrfTokenRepository = csrfTokenRepository;
 	}
 
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse res,
+			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
-		
-		
 		HttpServletResponse response = (HttpServletResponse) res;
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		//response.
-		if (getCsrfTokenFromHead(request)==null)		
-		{
-			CsrfToken token=csrfTokenRepository.generateToken(request);
-			
-			csrfTokenRepository.saveToken(token,request,response);
-			Cookie tokenCookie=new Cookie(token.getHeaderName(),token.getToken());			
-			response.addCookie(tokenCookie);		    
+		// response.
+		CsrfToken token = getCsrfTokenFromHead(request);
+		if (token == null) {
+			token = csrfTokenRepository.generateToken(request);
 		}
-		
-		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+
+		csrfTokenRepository.saveToken(token, request, response);
+
+		// Cookie tokenCookie=new
+		// Cookie(token.getHeaderName(),token.getToken());
+		Cookie tokenCookie = new Cookie("XSRF-TOKEN", token.getToken());
+		response.addCookie(tokenCookie);
+
+		// response.setHeader("csrftoken", token.getToken());
+		//response.setHeader("X-XSRF-TOKEN", token.getToken());
+		response.setHeader("XSRF-TOKEN", token.getToken());
+
+		response.setHeader("Access-Control-Allow-Credentials", "true");
+		response.setHeader("Access-Control-Allow-Methods",
+				"POST, GET, OPTIONS, DELETE");
 		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,authorization,X-XSRF-TOKEN");
-		
+		response.setHeader("Access-Control-Allow-Headers",
+				"x-requested-with,authorization,X-XSRF-TOKEN,XSRF-TOKEN");
+
 		chain.doFilter(req, res);
 	}
-	
-	private CsrfToken loadCsrfToken(HttpServletRequest request)
-	{	
+
+	private CsrfToken loadCsrfToken(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
-		if (cookies==null || cookies.length==0) return null;
-		CsrfToken token= csrfTokenRepository.generateToken(request);
-		for (Cookie cookie:cookies)
-		{
-			if (cookie.getName().equals(token.getHeaderName()))
-			{
-				return new DefaultCsrfToken(token.getHeaderName(), token.getParameterName(), cookie.getValue());				
+		if (cookies == null || cookies.length == 0)
+			return null;
+		CsrfToken token = csrfTokenRepository.generateToken(request);
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals(token.getHeaderName())) {
+				return new DefaultCsrfToken(token.getHeaderName(),
+						token.getParameterName(), cookie.getValue());
 			}
 		}
 		return null;
 	}
-	
-	private CsrfToken getCsrfTokenFromHead(HttpServletRequest request)
-	{			
-		CsrfToken token= csrfTokenRepository.generateToken(request);
-		String tokenvalue= request.getHeader("X-XSRF-TOKEN");
-		if (tokenvalue==null) return null;
-		return new DefaultCsrfToken(token.getHeaderName(), token.getParameterName(), tokenvalue);	
-				
+
+	private CsrfToken getCsrfTokenFromHead(HttpServletRequest request) {
+		CsrfToken token = csrfTokenRepository.generateToken(request);
+		//String tokenvalue = request.getHeader("X-XSRF-TOKEN");
+		String tokenvalue = request.getHeader("XSRF-TOKEN");
+		if (tokenvalue == null || tokenvalue.equals("null"))
+			return null;
+		return new DefaultCsrfToken(token.getHeaderName(),
+				token.getParameterName(), tokenvalue);
+
 	}
 
-	public void init(FilterConfig filterConfig) {}
+	public void init(FilterConfig filterConfig) {
+	}
 
-	public void destroy() {}
+	public void destroy() {
+	}
 
 }

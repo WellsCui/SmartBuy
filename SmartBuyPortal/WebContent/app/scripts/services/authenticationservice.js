@@ -40,8 +40,10 @@ angular.module('smartBuyPortalApp')
                 })
                 .then(
                 function (respond) {
-                    var currentCookies = $browser.cookies();
-                    $http.defaults.headers.common[CSRF_HEADER_NAME] = $cookies.get(CSRF_COOKIE_NAME)
+                    //var currentCookies = $browser.cookies();
+                    var cookies= $cookies;
+                    //$http.defaults.headers.common[CSRF_HEADER_NAME] = $cookies.get(CSRF_COOKIE_NAME)
+                    $http.defaults.headers.common[CSRF_HEADER_NAME] = respond.headers(CSRF_HEADER_NAME)
                     return respond.data;
                 },
                 function (error) {
@@ -77,12 +79,14 @@ angular.module('smartBuyPortalApp')
         {
             var header={};
             header[Authorization_HEADER_NAME]=$http.defaults.headers.common[Authorization_HEADER_NAME];
-            var csrf_token=$http.defaults.headers.common[CSRF_HEADER_NAME];
-            if (csrf_token!=undefined)
-            header[CSRF_HEADER_NAME]=$http.defaults.headers.common[CSRF_HEADER_NAME];
-
+           /* var csrf_token=$http.defaults.headers.common[CSRF_HEADER_NAME];
+            if (csrf_token!=undefined && csrf_token!=null)
+            header[CSRF_HEADER_NAME]=csrf_token;*/
+            //header[CSRF_HEADER_NAME]="eee7bf22-ace9-45c9-ad52-a65a7dccb0b9";
+            header["XSRF-TOKEN"]="eee7bf22-ace9-45c9-ad52-a65a7dccb0b9";
+            //header['Content-Type']= 'application/json; charset=utf-8';
+            header['Content-Type']= 'text/plain; charset=utf-8';
             return header;
-
         }
 
         //$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');

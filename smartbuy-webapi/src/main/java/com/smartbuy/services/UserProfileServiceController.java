@@ -3,6 +3,10 @@ package com.smartbuy.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
@@ -34,12 +38,15 @@ public class UserProfileServiceController {
 
 	@RequestMapping(value = "/api/greeting", method = RequestMethod.GET)
 	// @ResponseBody
-	public Greeting GetGreeting() {
+	public Greeting GetGreeting(ServletRequest req, ServletResponse res) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String name = auth.getName();
 		Greeting greeting = new Greeting();
 		greeting.setUserProfile(getUserProfile(name));
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
+		//greeting.setAccessToken(response.);
 		greeting.setGreetingMessage(String.format("Weclome %s!",greeting.getUserProfile().getFirstName()));
 		return greeting;
 	}
