@@ -19,9 +19,10 @@ angular.module('smartBuyPortalApp')
         this.serviceUrl="http://localhost:8080/smartbuy-webapi/api/DelphiService/VehicleStatus";
         this.getStatus = function () {
             //return $http.get('/API/DelphiService/GetStatus')
+            var headers=AuthenticationService.buildCSRFHeader();
             return $http.get(this.serviceUrl,
                 {
-                    headers: AuthenticationService.buildCSRFHeader()
+                    headers: headers
                 })
                 .then(
                 function (respond) {
@@ -35,17 +36,10 @@ angular.module('smartBuyPortalApp')
         };
 
         this.updateStatus=function(status){
-            /*return $http({
-             method: 'POST',
-             url: this.serviceUrl,
-             data: status,
-              headers: {"Content-Type": "application/json;charset=utf-8"}
-             })*/
+            var headers=AuthenticationService.buildCSRFHeader();
             return $http.post(this.serviceUrl,status
                 ,{
-                    //headers: {"Content-Type": "text/plain;charset=utf-8"}
-                    //headers: {"Content-Type": "application/json;charset=utf-8"}
-                    headers: AuthenticationService.buildCSRFHeader()
+                    headers:headers
                 }
             )
                 .then(

@@ -24,26 +24,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication().withUser("user").password("password")
 				.roles("USER");
 	}	
-		
+
 	protected void configure(HttpSecurity http) throws Exception {
-		HttpSessionCsrfTokenRepository csrfTokenRepository=new HttpSessionCsrfTokenRepository();
-		//csrfTokenRepository.setHeaderName("X-XSRF-TOKEN");
-		csrfTokenRepository.setHeaderName("CSRF");
-		
-		SimpleCORSFilter simpleCORSFilter=new SimpleCORSFilter();
+		HttpSessionCsrfTokenRepository csrfTokenRepository = new HttpSessionCsrfTokenRepository();
+		csrfTokenRepository.setHeaderName("XSRF-TOKEN");
+		SimpleCORSFilter simpleCORSFilter = new SimpleCORSFilter();
 		simpleCORSFilter.setCsrfTokenRepository(csrfTokenRepository);
 		http
-		.csrf().csrfTokenRepository(csrfTokenRepository).and()
-		.addFilterBefore(simpleCORSFilter, ChannelProcessingFilter.class)
+		//.sessionManagement().disable()
+				.csrf()
+				.csrfTokenRepository(csrfTokenRepository)
+				.and()
+				.addFilterBefore(simpleCORSFilter,
+						ChannelProcessingFilter.class)
 				.authorizeRequests()
-				.antMatchers("/resources/**", "/signup", "/about","/api/**",
+				.antMatchers("/resources/**", "/signup", "/about", "/api/**",
 						"/apilogin**").permitAll().antMatchers("/admin/**")
 				.hasRole("ADMIN").antMatchers("/db/**")
 				.access("hasRole('ADMIN') and hasRole('DBA')")
-				//.antMatchers("/api/**").hasRole("USER")
-				.anyRequest()
-				.authenticated().and().httpBasic().and().formLogin()
-				.loginPage("/login").permitAll();
+				// .antMatchers("/api/**").hasRole("USER")
+				.anyRequest().authenticated().and().httpBasic().and()
+				.formLogin().loginPage("/login").permitAll();
 
 	}
 
