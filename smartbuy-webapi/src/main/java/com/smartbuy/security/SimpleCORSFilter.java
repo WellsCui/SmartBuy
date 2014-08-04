@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.DefaultCsrfToken;
@@ -22,37 +24,20 @@ import org.springframework.stereotype.Component;
 //@Component
 public class SimpleCORSFilter implements Filter {
 	// @Autowired
-	private CsrfTokenRepository csrfTokenRepository;
+	private CsrfTokenValidator csrfTokenValidator;
 
-	public CsrfTokenRepository getCsrfTokenRepository() {
-		return csrfTokenRepository;
-	}
-
-	public void setCsrfTokenRepository(CsrfTokenRepository csrfTokenRepository) {
-		this.csrfTokenRepository = csrfTokenRepository;
+	public void setCsrfTokenRepository(CsrfTokenValidator csrfTokenValidator) {
+		this.csrfTokenValidator = csrfTokenValidator;
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse res,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		// response.
-		CsrfToken token = getCsrfTokenFromHead(request);
-		if (token == null) {
-			token = csrfTokenRepository.generateToken(request);
-		}
-
-		csrfTokenRepository.saveToken(token, request, response);
-
-		// Cookie tokenCookie=new
-		// Cookie(token.getHeaderName(),token.getToken());
-		Cookie tokenCookie = new Cookie("XSRF-TOKEN", token.getToken());
-		response.addCookie(tokenCookie);
-
-		// response.setHeader("csrftoken", token.getToken());
-		//response.setHeader("X-XSRF-TOKEN", token.getToken());
-		response.setHeader("XSRF-TOKEN", token.getToken());
+		
+		if (!csrfTokenValidator.Validate(request))
+			throw new ServletException("Invalid Csrf Token!");
+		response.setHeader("Access-Control-Allow-Origin", "*");	
 
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Methods",
@@ -62,32 +47,7 @@ public class SimpleCORSFilter implements Filter {
 				"x-requested-with,authorization,X-XSRF-TOKEN,XSRF-TOKEN");
 
 		chain.doFilter(req, res);
-	}
-
-	private CsrfToken loadCsrfToken(HttpServletRequest request) {
-		Cookie[] cookies = request.getCookies();
-		if (cookies == null || cookies.length == 0)
-			return null;
-		CsrfToken token = csrfTokenRepository.generateToken(request);
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals(token.getHeaderName())) {
-				return new DefaultCsrfToken(token.getHeaderName(),
-						token.getParameterName(), cookie.getValue());
-			}
-		}
-		return null;
-	}
-
-	private CsrfToken getCsrfTokenFromHead(HttpServletRequest request) {
-		CsrfToken token = csrfTokenRepository.generateToken(request);
-		//String tokenvalue = request.getHeader("X-XSRF-TOKEN");
-		String tokenvalue = request.getHeader("XSRF-TOKEN");
-		if (tokenvalue == null || tokenvalue.equals("null"))
-			return null;
-		return new DefaultCsrfToken(token.getHeaderName(),
-				token.getParameterName(), tokenvalue);
-
-	}
+	}	
 
 	public void init(FilterConfig filterConfig) {
 	}

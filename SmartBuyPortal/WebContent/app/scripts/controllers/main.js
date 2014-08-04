@@ -32,10 +32,19 @@ smartBuyPortalApp
 	};
         $scope.login=function() {
             AuthenticationService.login($scope.loginType,$scope.username,$scope.password,$scope.oauthToken)
-                .then(function(result)
+                .then(
+                function(token)
             {
-                //$scope.accessToken=token;
-                $scope.greetingMsg=result.greetingMessage;
+                AuthenticationService.getGreeting().then(
+                    function(greeting)
+                    {
+                        $scope.greetingMsg=greeting.greetingMessage;
+                    },
+                    function(greetingError){
+                        alert ("error when get greeting.." + greetingError);
+                    }
+                );
+
             },function(error){
                 alert ("error when get token.." + error);
             });

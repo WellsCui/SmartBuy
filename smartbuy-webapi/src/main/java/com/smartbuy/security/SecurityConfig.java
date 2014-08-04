@@ -23,17 +23,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			throws Exception {
 		auth.inMemoryAuthentication().withUser("user").password("password")
 				.roles("USER");
-	}	
-
+	}
+	
+	@Bean
+	 public CsrfTokenValidator getCsrfTokenValidator(){
+		if (csrfTokenRepository == null) {
+			csrfTokenRepository = new HttpHeaderCsrfTokenValidator();
+			csrfTokenRepository.setHeaderName("X-XSRF-TOKEN");
+		}
+		return csrfTokenRepository;
+    }
+	
+	private static HttpHeaderCsrfTokenValidator csrfTokenRepository;
+	
 	protected void configure(HttpSecurity http) throws Exception {
-		HttpSessionCsrfTokenRepository csrfTokenRepository = new HttpSessionCsrfTokenRepository();
-		csrfTokenRepository.setHeaderName("XSRF-TOKEN");
+		CsrfTokenValidator repo=getCsrfTokenValidator();		
 		SimpleCORSFilter simpleCORSFilter = new SimpleCORSFilter();
-		simpleCORSFilter.setCsrfTokenRepository(csrfTokenRepository);
+		simpleCORSFilter.setCsrfTokenRepository(repo);
 		http
-		//.sessionManagement().disable()
-				.csrf()
-				.csrfTokenRepository(csrfTokenRepository)
+		// .sessionManagement().disable()
+		.csrf()
+				.csrfTokenRepository(repo)
 				.and()
 				.addFilterBefore(simpleCORSFilter,
 						ChannelProcessingFilter.class)

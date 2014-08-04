@@ -13,11 +13,13 @@ import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.smartbuy.models.Greeting;
 import com.smartbuy.models.UserProfile;
+import com.smartbuy.security.SecurityConfig;
 
 @RestController
 //@RequestMapping(value = "/api/userprofile")
@@ -41,12 +43,14 @@ public class UserProfileServiceController {
 	public Greeting GetGreeting(ServletRequest req, ServletResponse res) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
+		
 		String name = auth.getName();
 		Greeting greeting = new Greeting();
 		greeting.setUserProfile(getUserProfile(name));
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		//greeting.setAccessToken(response.);
+		
 		greeting.setGreetingMessage(String.format("Weclome %s!",greeting.getUserProfile().getFirstName()));
 		return greeting;
 	}
