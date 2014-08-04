@@ -18,20 +18,17 @@ public class RestWebConfig extends WebMvcConfigurerAdapter {
 	private static final Charset UTF8 = Charset.forName("UTF-8");
 
 	@Override
-	public void configureMessageConverters(	List<HttpMessageConverter<?>> converters) {
-		/*
-		 * MappingJackson2HttpMessageConverter jsonConverter = new
-		 * MappingJackson2HttpMessageConverter(); List<MediaType> jsonTypes =
-		 * new ArrayList<>(jsonConverter.getSupportedMediaTypes());
-		 * jsonTypes.add(MediaType.TEXT_PLAIN);
-		 * jsonConverter.setSupportedMediaTypes(jsonTypes);
-		 * converters.add(jsonConverter);
-		 */
-
+	public void configureMessageConverters(
+			List<HttpMessageConverter<?>> converters) {
 		StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-		stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType(
-				"text", "plain", UTF8)));
+		//stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("TEXT","PLAIN",UTF8)));
+		stringConverter.setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON));
+		
 		converters.add(stringConverter);
+		
+		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();		
+		jsonConverter.setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON));
+		converters.add(jsonConverter);
 
 		// Add other converters ...
 

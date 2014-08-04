@@ -24,25 +24,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication().withUser("user").password("password")
 				.roles("USER");
 	}
-	
+
 	@Bean
-	 public CsrfTokenValidator getCsrfTokenValidator(){
+	public CsrfTokenValidator getCsrfTokenValidator() {
 		if (csrfTokenRepository == null) {
 			csrfTokenRepository = new HttpHeaderCsrfTokenValidator();
 			csrfTokenRepository.setHeaderName("X-XSRF-TOKEN");
 		}
 		return csrfTokenRepository;
-    }
-	
+	}
+
 	private static HttpHeaderCsrfTokenValidator csrfTokenRepository;
-	
+
 	protected void configure(HttpSecurity http) throws Exception {
-		CsrfTokenValidator repo=getCsrfTokenValidator();		
+		CsrfTokenValidator repo = getCsrfTokenValidator();
 		SimpleCORSFilter simpleCORSFilter = new SimpleCORSFilter();
 		simpleCORSFilter.setCsrfTokenRepository(repo);
-		http
-		// .sessionManagement().disable()
-		.csrf()
+		http.csrf()
 				.csrfTokenRepository(repo)
 				.and()
 				.addFilterBefore(simpleCORSFilter,

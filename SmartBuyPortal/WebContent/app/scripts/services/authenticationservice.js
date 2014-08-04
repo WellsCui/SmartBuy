@@ -17,18 +17,6 @@ var CSRF_HEADER_NAME="X-XSRF-TOKEN";
 var Authorization_HEADER_NAME="Authorization";
 angular.module('smartBuyPortalApp')
     .service('AuthenticationService', function AuthenticationService($http,$cookies,$browser,$q,Base64) {
-        // AngularJS will instantiate a singleton by calling "new" on this function
-        //CORS Ajax
-//        Access-Control-Allow-Origin: *
-//        Access-Control-Allow-Methods: GET, POST, OPTIONS
-//        Access-Control-Allow-Headers: Content-Type, Accept, X-Requested-With, x-some-header
-
-        //this.serviceUrl="http://192.168.73.128:8080/smartbuy-webapi/api/DelphiService/VehicleStatus";
-
-        /*String loginType,
-        String username,
-        String password,
-        String oauthId,*/
 
         this.login = function (loginType,username,password,oauthToken) {
             this.setCredentials(username, password);
@@ -71,9 +59,8 @@ angular.module('smartBuyPortalApp')
             var csrf_token=$http.defaults.headers.common[CSRF_HEADER_NAME];
             if (csrf_token!=undefined && csrf_token!=null)
             header[CSRF_HEADER_NAME]=csrf_token;
-            //header[CSRF_HEADER_NAME]="eee7bf22-ace9-45c9-ad52-a65a7dccb0b9";
-            //header['Content-Type']= 'application/json; charset=utf-8';
-            header['Content-Type']= 'text/plain; charset=utf-8';
+            header['Content-Type']= 'text/plain; application/json; charset=utf-8';
+            //header['Content-Type']= 'text/plain; charset=utf-8';
             return header;
         }
 

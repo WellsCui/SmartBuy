@@ -33,10 +33,10 @@ public class DelphiServiceController {
 	}
 	
 	@RequestMapping(value="/VehicleStatus",method=RequestMethod.POST
-	//		,consumes={"text/plain", "application/*"}
+		//	,consumes={"text/plain", "application/*"}
 	)
 	//@ResponseBody
-	//public  VehicleStatus UpdateStatus(@RequestBody VehicleStatus status,UriComponentsBuilder builder)
+	//public  VehicleStatus UpdateStatus(@RequestBody VehicleStatus vehicleStatus)
 	public  VehicleStatus UpdateStatus(@RequestBody String status) throws JsonParseException, JsonMappingException, IOException
 	{
 		ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
