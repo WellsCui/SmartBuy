@@ -20,7 +20,7 @@ public class RestWebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void configureMessageConverters(
 			List<HttpMessageConverter<?>> converters) {
-		StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
+	/*	StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
 		//stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("TEXT","PLAIN",UTF8)));
 		stringConverter.setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON));
 		
@@ -29,7 +29,7 @@ public class RestWebConfig extends WebMvcConfigurerAdapter {
 		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();		
 		jsonConverter.setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON));
 		converters.add(jsonConverter);
-
+*/
 		// Add other converters ...
 
 	}
