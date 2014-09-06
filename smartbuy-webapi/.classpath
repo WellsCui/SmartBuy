@@ -25,5 +25,14 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/wells/.m2/repository/org/springframework/spring-context/4.0.6.RELEASE/spring-context-4.0.6.RELEASE.jar" sourcepath="/home/wells/.m2/repository/org/springframework/spring-context/4.0.6.RELEASE/spring-context-4.0.6.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+			<attribute name="maven.artifactId" value="spring-context"/>
+			<attribute name="maven.version" value="4.0.6.RELEASE"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
