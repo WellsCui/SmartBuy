@@ -1,4 +1,4 @@
-package com.smartbuy.services;
+package com.smartbuy.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
