@@ -122,5 +122,10 @@
 		<property name="realmName" value="Contacts Realm via Digest Authentication" />
 		<property name="key" value="acegi" />
 	</bean>
+	
+	
+    <bean name="DelphiService" class="com.smartbuy.services.DelphiServiceImpl"/>
+
+          
 
 </beans>

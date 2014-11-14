@@ -1,5 +1,7 @@
 package com.smartbuy.domain;
 
+import com.smartbuy.models.UserProfile;
+
 public class Greeting {
 	private UserProfile userProfile;
 	private String greetingMessage;
