@@ -43,16 +43,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf()
 				.csrfTokenRepository(repo)
 				.and()
-				.addFilterBefore(simpleCORSFilter,
-						ChannelProcessingFilter.class)
+				.addFilterBefore(simpleCORSFilter,ChannelProcessingFilter.class)
 				.authorizeRequests()
-				.antMatchers("/resources/**", "/signup", "/about", "/api/**",
-						"/apilogin**").permitAll().antMatchers("/admin/**")
-				.hasRole("ADMIN").antMatchers("/db/**")
+				.antMatchers("/resources/**", "/signup", "/about", "/api/login").permitAll()
+				//.antMatchers("/api/**").permitAll()
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/db/**")
 				.access("hasRole('ADMIN') and hasRole('DBA')")
 				// .antMatchers("/api/**").hasRole("USER")
-				.anyRequest().authenticated().and().httpBasic().and()
-				.formLogin().loginPage("/login").permitAll();
+				.anyRequest().authenticated().and().httpBasic()
+				.authenticationEntryPoint(new CsrfAuthenticationEntryPoint())
+				//.and().formLogin().loginPage("/login").permitAll()
+				;
 
 	}
 

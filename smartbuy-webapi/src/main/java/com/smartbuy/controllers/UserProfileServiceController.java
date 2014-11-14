@@ -1,4 +1,4 @@
-package com.smartbuy.services;
+package com.smartbuy.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +17,13 @@ import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.smartbuy.models.Greeting;
-import com.smartbuy.models.UserProfile;
+import com.smartbuy.domain.Greeting;
+import com.smartbuy.domain.UserProfile;
 import com.smartbuy.security.SecurityConfig;
 
 @RestController
 //@RequestMapping(value = "/api/userprofile")
-@Secured("USER")
+//@Secured("USER")
 public class UserProfileServiceController {
 	static List<UserProfile> userProfiles;
 	
@@ -40,6 +40,7 @@ public class UserProfileServiceController {
 
 	@RequestMapping(value = "/api/greeting", method = RequestMethod.GET)
 	// @ResponseBody
+	//@Secured("USER")
 	public Greeting GetGreeting(ServletRequest req, ServletResponse res) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();

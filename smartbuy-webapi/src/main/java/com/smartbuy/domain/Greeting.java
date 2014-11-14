@@ -1,4 +1,4 @@
-package com.smartbuy.models;
+package com.smartbuy.domain;
 
 public class Greeting {
 	private UserProfile userProfile;

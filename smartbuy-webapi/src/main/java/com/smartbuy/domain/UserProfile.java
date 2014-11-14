@@ -1,4 +1,4 @@
-package com.smartbuy.models;
+package com.smartbuy.domain;
 
 public class UserProfile {
 	private String userName;

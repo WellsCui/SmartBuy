@@ -1,9 +1,11 @@
-package com.smartbuy.services;
+package com.smartbuy.controllers;
 
 import javax.ws.rs.Consumes;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import com.smartbuy.models.VehicleStatus;
+
+import com.smartbuy.domain.VehicleStatus;
 
 
 @RestController
@@ -35,6 +37,5 @@ public class DelphiServiceController {
 		vehicleStatus.setLatitude(vehicleStatus.getLatitude()+3);
 		return vehicleStatus;
 	}
-	
 	
 }

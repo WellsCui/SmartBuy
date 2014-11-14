@@ -45,7 +45,8 @@ public class HttpHeaderCsrfTokenValidator implements CsrfTokenValidator {
     /* (non-Javadoc)
      * @see org.springframework.security.web.csrf.CsrfTokenRepository#loadToken(javax.servlet.http.HttpServletRequest)
      */
-    public CsrfToken loadToken(HttpServletRequest request) {
+    public CsrfToken loadToken(HttpServletRequest request) {   	
+    	    	
         String token=request.getHeader(headerName);
         if (token==null ||token.isEmpty())
         	return null;
