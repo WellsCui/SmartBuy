@@ -1,8 +1,12 @@
-package com.smartbuy.models;
+package com.smartbuy.entities;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
 public class Shopping {
+	@Id
 	private String Id;
 	private String customerId;
 	private double amount;

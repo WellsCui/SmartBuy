@@ -34,20 +34,21 @@ public class SimpleCORSFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-		
-		if (!csrfTokenValidator.Validate(request))
-			throw new ServletException("Invalid Csrf Token!");
-		response.setHeader("Access-Control-Allow-Origin", "*");	
 
-		response.setHeader("Access-Control-Allow-Credentials", "true");
-		response.setHeader("Access-Control-Allow-Methods",
-				"POST, GET, OPTIONS, DELETE");
-		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers",
-				"x-requested-with,authorization,X-XSRF-TOKEN,XSRF-TOKEN");
+		if (request.getRequestURL().toString().contains("/api/")) {
+			if (!csrfTokenValidator.Validate(request))
+				throw new ServletException("Invalid Csrf Token!");
+			response.setHeader("Access-Control-Allow-Origin", "*");
 
+			response.setHeader("Access-Control-Allow-Credentials", "true");
+			response.setHeader("Access-Control-Allow-Methods",
+					"POST, GET, OPTIONS, DELETE");
+			response.setHeader("Access-Control-Max-Age", "3600");
+			response.setHeader("Access-Control-Allow-Headers",
+					"x-requested-with,authorization,X-XSRF-TOKEN,XSRF-TOKEN");
+		}
 		chain.doFilter(req, res);
-	}	
+	}
 
 	public void init(FilterConfig filterConfig) {
 	}

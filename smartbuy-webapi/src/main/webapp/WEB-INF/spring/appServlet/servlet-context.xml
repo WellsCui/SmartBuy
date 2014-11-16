@@ -17,7 +17,7 @@
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-
+<context:annotation-config/>
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean
@@ -25,14 +25,16 @@
 				<constructor-arg>
 					<bean
 						class="org.springframework.context.support.ConversionServiceFactoryBean" />
-				</constructor-arg>				
+				</constructor-arg>
 			</bean>
 
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
-			<property name="supportedMediaTypes">
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
 					<array>
 						<util:constant static-field="org.springframework.http.MediaType.TEXT_PLAIN" />
-						<util:constant static-field="org.springframework.http.MediaType.APPLICATION_JSON" />
+						<util:constant
+							static-field="org.springframework.http.MediaType.APPLICATION_JSON" />
 					</array>
 				</property>
 			</bean>
@@ -122,10 +124,22 @@
 		<property name="realmName" value="Contacts Realm via Digest Authentication" />
 		<property name="key" value="acegi" />
 	</bean>
-	
-	
-    <bean name="DelphiService" class="com.smartbuy.services.DelphiServiceImpl"/>
 
-          
 
+	<bean name="DelphiService" class="com.smartbuy.services.DelphiServiceImpl" />
+	<bean name="SmartBuyDao" class="com.smartbuy.dao.SmartBuyDaoImpl" />
+		
+	<bean id="smartBuyEmf"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="SmartBuy"/>
+		<!-- <property name="dataSource" ref="SmartBuy" /> -->
+		<property name="loadTimeWeaver">
+			<bean
+				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+		</property>
+	</bean>
+
+	<bean id="myTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="smartBuyEmf" />
+	</bean>
 </beans>

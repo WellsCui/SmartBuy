@@ -1,4 +1,4 @@
-package com.smartbuy.models;
+package com.smartbuy.entities;
 
 
 public class UserProfile {

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.smartbuy.domain.Greeting;
-import com.smartbuy.models.UserProfile;
+import com.smartbuy.entities.UserProfile;
 import com.smartbuy.security.SecurityConfig;
 
 @RestController

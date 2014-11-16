@@ -45,15 +45,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.addFilterBefore(simpleCORSFilter,ChannelProcessingFilter.class)
 				.authorizeRequests()
-				.antMatchers("/resources/**", "/signup", "/about", "/api/login").permitAll()
-				//.antMatchers("/api/**").permitAll()
+				.antMatchers("/resources/**", "/", "/about", "/api/login","/cassandratest/**").permitAll()
+				.antMatchers("/api/**").hasRole("USER")
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/db/**")
-				.access("hasRole('ADMIN') and hasRole('DBA')")
-				// .antMatchers("/api/**").hasRole("USER")
+				.access("hasRole('ADMIN') and hasRole('DBA')")				
 				.anyRequest().authenticated().and().httpBasic()
 				.authenticationEntryPoint(new CsrfAuthenticationEntryPoint())
-				//.and().formLogin().loginPage("/login").permitAll()
+				.and().formLogin().loginPage("/login").permitAll()
 				;
 
 	}

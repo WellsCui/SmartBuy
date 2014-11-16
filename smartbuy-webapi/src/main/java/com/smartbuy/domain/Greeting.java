@@ -1,6 +1,6 @@
 package com.smartbuy.domain;
 
-import com.smartbuy.models.UserProfile;
+import com.smartbuy.entities.UserProfile;
 
 public class Greeting {
 	private UserProfile userProfile;
