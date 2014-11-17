@@ -2,13 +2,13 @@
 <clientProperties>
 	<datastores>
 		<dataStore>
-			<name>cassandra</name>
+			<name>smartbuy</name>
 			<schemas>
 				<schema>
-					<name>datakeeper</name>
+					<name>smartbuy</name>
 					<tables>
 						<table>
-							<name>SUBORDINATES_COUNTER</name>
+							<name>shopping</name>
 							<properties>
 								<property name="default.validation.class" value="CounterColumnType"></property>
 								<property name="key.validation.class" value="UTF8Type"></property>
