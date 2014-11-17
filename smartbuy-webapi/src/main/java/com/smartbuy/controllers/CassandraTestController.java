@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smartbuy.dao.SmartBuyDao;
-import com.smartbuy.entities.shopping;
+import com.smartbuy.entities.Shopping;
 import com.smartbuy.services.DelphiService;
 
 @RestController
@@ -26,7 +26,7 @@ public class CassandraTestController {
 	@RequestMapping(value = "/commodity")
 	public String getCommodities() {
 		//List<?> list=smartBuyDao.findByQuery("select * from shopping");
-		shopping shopping= smartBuyDao.findById(shopping.class, "shopping001");
+		Shopping shopping= smartBuyDao.findById(Shopping.class, "shopping001");
 		return "commodity";
 	}
 }

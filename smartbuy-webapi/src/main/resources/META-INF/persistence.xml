@@ -6,7 +6,7 @@
 
 	<persistence-unit name="SmartBuy">
 		<provider>com.impetus.kundera.KunderaPersistence</provider>
-		<class>com.smartbuy.entities.shopping</class>
+		<class>com.smartbuy.entities.Shopping</class>
 	
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>

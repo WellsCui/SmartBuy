@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-public class shopping {
+public class Shopping {
 	@Id
 	private String Id;
 	private String customerId;
