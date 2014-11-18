@@ -18,7 +18,7 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 <context:annotation-config/>
-	<mvc:annotation-driven>
+	<mvc:annotation-driven  conversion-service="conversionService" >
 		<mvc:message-converters>
 			<bean
 				class="org.springframework.http.converter.ObjectToStringHttpMessageConverter">
@@ -40,6 +40,15 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+	
+	<bean id="conversionService"
+        class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <property name="converters">
+        <set>
+            <bean class="com.smartbuy.utilities.ArrayListConverter"/>   
+        </set>
+    </property>
+   </bean>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->

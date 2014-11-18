@@ -53,7 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated().and().httpBasic()
 				.authenticationEntryPoint(new CsrfAuthenticationEntryPoint())
 				.and().formLogin().loginPage("/login").permitAll()
+				
 				;
+		http.
 
 	}
 
