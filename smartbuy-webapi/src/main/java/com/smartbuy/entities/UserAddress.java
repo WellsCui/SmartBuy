@@ -1,12 +1,8 @@
 package com.smartbuy.entities;
 
 public class UserAddress {
-	private String userId;
-	private String country;
-	private String state;
-	private String city;
-	private String street;
-	private String unit;
+	private String userId;	
+	private Address address;
 	private AddressType addressType;
 	private boolean isDefault;
 

@@ -1,7 +1,9 @@
 package com.smartbuy.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smartbuy.dao.SmartBuyDao;
+import com.smartbuy.entities.Address;
 import com.smartbuy.entities.Shopping;
 import com.smartbuy.services.DelphiService;
 
@@ -23,10 +26,30 @@ public class CassandraTestController {
 		this.smartBuyDao = smartBuyDao;
 	}
 	
-	@RequestMapping(value = "/commodity")
-	public String getCommodities() {
-		List<?> list=smartBuyDao.findByQuery("select * from Shopping s");
+	@RequestMapping(value = "/Shopping")
+	public List<Shopping> getCommodities() {
+		//List<?> list=smartBuyDao.findByQuery("select s.id,s.amount from Shopping s");
+		ArrayList<Shopping> list= (ArrayList<Shopping>)smartBuyDao.findByQuery("select s from Shopping s");
+		
 		//Shopping shopping= smartBuyDao.findById(Shopping.class, "shopping001");
-		return "commodity";
+		return list;
+	}
+	
+	@RequestMapping(value = "/Shopping/create")
+	public Shopping createShopping() {
+		Shopping shopping= new Shopping();
+		shopping.setId(UUID.randomUUID().toString());
+		shopping.setAmount(102.5);
+		Address billingAddress=new Address();
+		billingAddress.setCountry("Canada");
+		billingAddress.setCity("Ottawa");
+		billingAddress.setStreet("St-Jacques");
+		billingAddress.setStreetNumber(271);
+		billingAddress.setUnit("C");
+		billingAddress.setZipcode("K1L5G6");
+		shopping.setBillingAddress(billingAddress);
+		shopping.setShippingAddress(billingAddress);		
+		smartBuyDao.insert(shopping);		
+		return shopping;
 	}
 }

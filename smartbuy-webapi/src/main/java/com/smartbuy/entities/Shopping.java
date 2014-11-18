@@ -1,6 +1,7 @@
 package com.smartbuy.entities;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -8,16 +9,62 @@ import javax.persistence.*;
 @Table(name = "shopping", schema = "smartbuy@SmartBuy")
 public class Shopping {
 	@Id
-	private String Id;
+	@Column(name = "id")
+	private String id;
 	@Column
 	private String customerId;
 	@Column
 	private double amount;
 	@Column
 	private boolean isPaid;
-	
-	private String billingAddress;
-	private String shippingAddress;
+	@Column
+	private Address billingAddress;
+	@Column
+	private Address shippingAddress;
+	@Column
 	private Date createdTime;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public boolean isPaid() {
+		return isPaid;
+	}
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
+	}
+	public Address getBillingAddress() {
+		return billingAddress;
+	}
+	public void setBillingAddress(Address billingAddress) {
+		this.billingAddress = billingAddress;
+	}
+	public Address getShippingAddress() {
+		return shippingAddress;
+	}
+	public void setShippingAddress(Address shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+	
 
 }
