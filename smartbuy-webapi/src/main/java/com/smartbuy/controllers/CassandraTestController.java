@@ -25,8 +25,8 @@ public class CassandraTestController {
 	
 	@RequestMapping(value = "/commodity")
 	public String getCommodities() {
-		//List<?> list=smartBuyDao.findByQuery("select * from shopping");
-		Shopping shopping= smartBuyDao.findById(Shopping.class, "shopping001");
+		List<?> list=smartBuyDao.findByQuery("select s.* from smartbuy.shopping s");
+		//Shopping shopping= smartBuyDao.findById(Shopping.class, "shopping001");
 		return "commodity";
 	}
 }

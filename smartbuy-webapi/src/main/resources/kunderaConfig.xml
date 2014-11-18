@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientProperties>
+	<datastores>
+		<dataStore>
+			<name>cassandra</name>
+			<!-- <connection>
+				<properties>
+					<property name="connection.property1" value="connection.property1.value"></property>
+					<property name="connection.property2" value="connection.property2.value"></property>
+					More connection properties
+				</properties>
+				<servers>
+					<server>
+						<host>localhost</host>
+						<port>9160</port>
+					</server>
+					<server>
+						<host>host2</host>
+						<port>port2</port>
+					</server>
+					More servers
+				</servers>
+			</connection> -->
+			<schemas>
+				<schema>
+					<name>smartbuy</name>
+					<tables>
+						<table>
+							<name>shopping</name>
+							<properties> <property name="default.validation.class" value="UTF8Type"></property> 
+								<property name="key.validation.class" value="UTF8Type"></property> </properties>
+						</table>
+					</tables>
+				</schema>
+			</schemas>
+		</dataStore>
+	</datastores>
+</clientProperties>
