@@ -44,9 +44,9 @@
 	<bean id="conversionService"
         class="org.springframework.context.support.ConversionServiceFactoryBean">
     <property name="converters">
-        <set>
+        <list>
             <bean class="com.smartbuy.utilities.ArrayListConverter"/>   
-        </set>
+        </list>
     </property>
    </bean>
 

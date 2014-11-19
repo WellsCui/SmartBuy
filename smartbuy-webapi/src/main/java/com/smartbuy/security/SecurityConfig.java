@@ -52,10 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.access("hasRole('ADMIN') and hasRole('DBA')")				
 				.anyRequest().authenticated().and().httpBasic()
 				.authenticationEntryPoint(new CsrfAuthenticationEntryPoint())
-				.and().formLogin().loginPage("/login").permitAll()
-				
+				.and().formLogin().loginPage("/login").permitAll()				
 				;
-		http.
+		
 
 	}
 
