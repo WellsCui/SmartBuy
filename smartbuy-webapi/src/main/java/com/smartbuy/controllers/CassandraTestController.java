@@ -1,6 +1,8 @@
 package com.smartbuy.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -27,12 +29,14 @@ public class CassandraTestController {
 	}
 	
 	@RequestMapping(value = "/Shopping")
-	public List<Shopping> getCommodities() {
-		//List<?> list=smartBuyDao.findByQuery("select s.id,s.amount from Shopping s");
-		ArrayList<Shopping> list= (ArrayList<Shopping>)smartBuyDao.findByQuery("select s from Shopping s");
+	public Shopping[] getCommodities() {
+		
+		ArrayList<Shopping> list= (ArrayList<Shopping>)
+				smartBuyDao.findByQuery("select s from Shopping s where s.createdTime<:createdTime",
+						"createdTime",new Date());		
 		
 		//Shopping shopping= smartBuyDao.findById(Shopping.class, "shopping001");
-		return list;
+		return list.toArray(new Shopping[list.size()]);		
 	}
 	
 	@RequestMapping(value = "/Shopping/create")
@@ -48,7 +52,8 @@ public class CassandraTestController {
 		billingAddress.setUnit("C");
 		billingAddress.setZipcode("K1L5G6");
 		shopping.setBillingAddress(billingAddress);
-		shopping.setShippingAddress(billingAddress);		
+		shopping.setShippingAddress(billingAddress);
+		shopping.setCreatedTime(new Date());
 		smartBuyDao.insert(shopping);		
 		return shopping;
 	}

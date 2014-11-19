@@ -5,8 +5,12 @@ import java.util.UUID;
 
 import javax.persistence.*;
 
+
+
 @Entity
-@Table(name = "shopping", schema = "smartbuy@SmartBuy")
+@Table(name = "shopping", schema = "smartbuy@SmartBuy",
+indexes = {@Index(name = "index_Shopping_createdTime",  columnList="createdTime")})
+
 public class Shopping {
 	@Id
 	@Column(name = "id")
@@ -21,8 +25,11 @@ public class Shopping {
 	private Address billingAddress;
 	@Column
 	private Address shippingAddress;
+	
 	@Column
+	//@com.impetus.kundera.index.Index( name = "index_Shopping_createdTime")
 	private Date createdTime;
+	
 	public String getId() {
 		return id;
 	}
@@ -62,6 +69,7 @@ public class Shopping {
 	public Date getCreatedTime() {
 		return createdTime;
 	}
+	
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
