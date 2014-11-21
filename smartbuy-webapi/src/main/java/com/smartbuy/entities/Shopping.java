@@ -8,8 +8,10 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "shopping", schema = "smartbuy@SmartBuy",
-indexes = {@Index(name = "index_Shopping_createdTime",  columnList="createdTime")})
+@Table(name = "shopping", schema = "smartbuy@SmartBuy"
+,indexes = {@Index(name = "index_Shopping_createdTime",  columnList="createdTime"),
+		@Index(name = "index_Shopping_customerId",  columnList="customerId")}
+)
 
 public class Shopping {
 	@Id
@@ -27,7 +29,7 @@ public class Shopping {
 	private Address shippingAddress;
 	
 	@Column
-	//@com.impetus.kundera.index.Index( name = "index_Shopping_createdTime")
+	@com.impetus.kundera.index.Index( name = "index_Shopping_createdTime")
 	private Date createdTime;
 	
 	public String getId() {
@@ -36,6 +38,7 @@ public class Shopping {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
 	public String getCustomerId() {
 		return customerId;
 	}
