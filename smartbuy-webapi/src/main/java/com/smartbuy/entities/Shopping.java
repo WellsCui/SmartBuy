@@ -29,7 +29,7 @@ public class Shopping {
 	private Address shippingAddress;
 	
 	@Column
-	@com.impetus.kundera.index.Index( name = "index_Shopping_createdTime")
+	
 	private Date createdTime;
 	
 	public String getId() {

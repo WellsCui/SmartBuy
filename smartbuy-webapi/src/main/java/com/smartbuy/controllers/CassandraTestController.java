@@ -32,7 +32,7 @@ public class CassandraTestController {
 	public Shopping[] getCommodities() {
 		
 		ArrayList<Shopping> list= (ArrayList<Shopping>)
-				smartBuyDao.findByQuery("select s from Shopping s where s.createdTime<:createdTime",
+				smartBuyDao.findByQuery("select s from Shopping s where s.customerid='customerId001' and s.createdTime<:createdTime",
 						"createdTime",new Date());		
 		
 		//Shopping shopping= smartBuyDao.findById(Shopping.class, "shopping001");
@@ -54,6 +54,7 @@ public class CassandraTestController {
 		shopping.setBillingAddress(billingAddress);
 		shopping.setShippingAddress(billingAddress);
 		shopping.setCreatedTime(new Date());
+		shopping.setCustomerId("customerId001");
 		smartBuyDao.insert(shopping);		
 		return shopping;
 	}
