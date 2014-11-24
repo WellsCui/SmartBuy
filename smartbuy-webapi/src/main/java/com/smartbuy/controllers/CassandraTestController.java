@@ -28,7 +28,7 @@ public class CassandraTestController {
 		this.smartBuyDao = smartBuyDao;
 	}
 	
-	@RequestMapping(value = "/Shopping")
+	@RequestMapping(value = "/shopping")
 	public Shopping[] getCommodities() {
 		
 		ArrayList<Shopping> list= (ArrayList<Shopping>)
