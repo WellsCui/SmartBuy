@@ -1,7 +1,7 @@
-# packaged angular-mocks
+# packaged angular-cookies
 
 This repo is for distribution on `npm` and `bower`. The source for this module is in the
-[main AngularJS repo](https://github.com/angular/angular.js/tree/master/src/ngMock).
+[main AngularJS repo](https://github.com/angular/angular.js/tree/master/src/ngCookies).
 Please file issues and pull requests against that repo.
 
 ## Install
@@ -11,26 +11,46 @@ You can install this package either with `npm` or with `bower`.
 ### npm
 
 ```shell
-npm install angular-mocks
+npm install angular-cookies
 ```
 
-The mocks are then available at `node_modules/angular-mocks/angular-mocks.js`.
+Add a `<script>` to your `index.html`:
 
-Note that this package is not in CommonJS format, so doing `require('angular-mocks')` will
+```html
+<script src="/node_modules/angular-cookies/angular-cookies.js"></script>
+```
+
+Then add `ngCookies` as a dependency for your app:
+
+```javascript
+angular.module('myApp', ['ngCookies']);
+```
+
+Note that this package is not in CommonJS format, so doing `require('angular-cookies')` will
 return `undefined`.
 
 ### bower
 
 ```shell
-bower install angular-mocks
+bower install angular-cookies
 ```
 
-The mocks are then available at `bower_components/angular-mocks/angular-mocks.js`.
+Add a `<script>` to your `index.html`:
+
+```html
+<script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+```
+
+Then add `ngCookies` as a dependency for your app:
+
+```javascript
+angular.module('myApp', ['ngCookies']);
+```
 
 ## Documentation
 
 Documentation is available on the
-[AngularJS docs site](https://docs.angularjs.org/guide/unit-testing).
+[AngularJS docs site](http://docs.angularjs.org/api/ngCookies).
 
 ## License
 

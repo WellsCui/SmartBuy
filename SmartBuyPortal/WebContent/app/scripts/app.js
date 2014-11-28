@@ -21,13 +21,39 @@ if (!String.prototype.format) {
     };
 }
 
-var smartBuyPortalApp=angular.module('smartBuyPortalApp', ['ng','ngCookies']);
+var smartBuyPortalApp=angular.module('smartBuyPortalApp', ['ng','ngCookies','ngRoute']);
 smartBuyPortalApp
     .config(function($httpProvider){
         $httpProvider.defaults.headers.common = {};
         $httpProvider.defaults.headers.common ['Content-Type'] = 'application/json;charset=utf-8';
 
+
+
+
     });
+smartBuyPortalApp
+.config(function($routeProvider, $locationProvider) {
+    $routeProvider
+        .when('/home', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl',
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        })
+        .when('/Book/:bookId/ch/:chapterId', {
+            templateUrl: 'chapter.html',
+            controller: 'ChapterController'
+        });
+
+    // configure html5 to get links working on jsfiddle
+    $locationProvider.html5Mode(true);
+});
 
 /*angular.module('smartBuyPortalApp').directive('ncgRequestVerificationToken', ['$http', function ($http) {
     return function (scope, element, attrs) {
