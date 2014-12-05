@@ -21,7 +21,7 @@
   <h4>Karma</h4>
   <p>Spectacular Test Runner for JavaScript.</p>-->
 
-<div ng-include="'views/search.html'"  ng-controller="SearchCtrl"></div>
+<div ng-include="'views/searchbar.html'" onload="console.log('calling require...'); require(['controllers/searchbar'], function(searchbarCtrl) {console.log(' require success...')});" ng-controller="SearchBarCtrl"></div>
 
 <button id="btnLogin" ng-click="login()">login</button>
   <button id="btnGetVehicleStatus" ng-click="getStatus()">GetVehicleStatus</button>
@@ -33,3 +33,4 @@
 <label>longtitude: </label><label id="lbl_currentStatus_longtitude">{{currentStatus.longtitude}}</label>
 <label>latitude: </label><label id="lbl_currentStatus_latitude">{{currentStatus.latitude}}</label>
 </div>
+
