@@ -18,10 +18,15 @@
     AngularJS is a toolset for building the framework most suited to your application development.
   </p>
 
+   require(['controllers/searchbar']);
+,function() {console.log(' require success...')}
   <h4>Karma</h4>
   <p>Spectacular Test Runner for JavaScript.</p>-->
 
-<div ng-include="'views/searchbar.html'" onload="console.log('calling require...'); require(['controllers/searchbar'], function(searchbarCtrl) {console.log(' require success...')});" ng-controller="SearchBarCtrl"></div>
+<div ng-include="'views/searchbar.html'"
+     onload="console.log(' loading searchbar controller...');"
+     ng-controller="SearchBarController"
+     ></div>
 
 <button id="btnLogin" ng-click="login()">login</button>
   <button id="btnGetVehicleStatus" ng-click="getStatus()">GetVehicleStatus</button>

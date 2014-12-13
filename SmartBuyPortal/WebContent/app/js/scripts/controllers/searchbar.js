@@ -7,9 +7,10 @@
  * # MainCtrl
  * Controller of the smartBuyPortalApp
  */
+define(['app'], function (app) {
 console.log("registering searchbar controller");
-smartBuyPortalApp
-  .controller('SearchBarCtrl', function ($scope,SearchService,AuthenticationService) {
+    app
+  .controller('SearchBarController', function ($scope,AuthenticationService) {
 	$scope.toFind = '';
 
 
@@ -17,15 +18,11 @@ smartBuyPortalApp
         {
 
            // $scope.currentStatus={longtitude:40.01, latitude:100.1, speed:81.0, rpm:3000 };
-            SearchService.search($scope.toFind ).then(function(status)
-            {
 
-            },function(error){
-                throw new Error("error when searching.." + error);
-            });
 
         };
 
 
   });
+});
  

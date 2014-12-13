@@ -1,5 +1,5 @@
 'use strict';
-
+define(['app','AuthenticationService'], function (app) {
 /**
  * @ngdoc service
  * @name smartBuyPortalApp.Delphiservice
@@ -7,7 +7,7 @@
  * # Delphiservice
  * Service in the smartBuyPortalApp.
  */
-angular.module('smartBuyPortalApp')
+app
     .service('SearchService', function SearchService($http,AuthenticationService) {
 
         this.serviceUrl="http://localhost:8080/smartbuy-webapi/api/Search/";
@@ -30,3 +30,4 @@ angular.module('smartBuyPortalApp')
         };
 
     });
+});

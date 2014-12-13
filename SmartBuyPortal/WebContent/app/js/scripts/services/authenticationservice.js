@@ -1,5 +1,5 @@
 'use strict';
-
+define(['app','Base64'], function (app) {
 /**
  * @ngdoc service
  * @name smartBuyPortalApp.Delphiservice
@@ -15,7 +15,7 @@ var CSRF_COOKIE_NAME="XSRF-TOKEN";
 var CSRF_HEADER_NAME="X-XSRF-TOKEN";
 
 var Authorization_HEADER_NAME="Authorization";
-angular.module('smartBuyPortalApp')
+    app
     .service('AuthenticationService', function AuthenticationService($http,$cookies,$browser,$q,Base64) {
 
         this.login = function (loginType,username,password,oauthToken) {
@@ -79,3 +79,4 @@ angular.module('smartBuyPortalApp')
 
         };
     });
+});

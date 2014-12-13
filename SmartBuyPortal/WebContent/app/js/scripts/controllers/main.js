@@ -7,9 +7,10 @@
  * # MainCtrl
  * Controller of the smartBuyPortalApp
  */
+define(['app', 'DelphiService', 'AuthenticationService','controllers/searchbar'], function (app) {
+    app
+  .controller('MainController', function ($scope,DelphiService,AuthenticationService) {
 
-smartBuyPortalApp
-  .controller('MainCtrl', function ($scope,Delphiservice,AuthenticationService) {
 	$scope.awesomeThings = [
 	'HTML5 Boilerplate',
 	'AngularJS',
@@ -78,4 +79,5 @@ smartBuyPortalApp
 
         };
   });
- 
+
+});

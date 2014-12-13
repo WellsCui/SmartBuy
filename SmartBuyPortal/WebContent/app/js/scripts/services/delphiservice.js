@@ -1,5 +1,5 @@
 'use strict';
-
+define(['app','AuthenticationService'], function (app) {
 /**
  * @ngdoc service
  * @name smartBuyPortalApp.Delphiservice
@@ -7,8 +7,8 @@
  * # Delphiservice
  * Service in the smartBuyPortalApp.
  */
-angular.module('smartBuyPortalApp')
-    .service('Delphiservice', function Delphiservice($http,AuthenticationService) {
+app
+    .service('DelphiService', function DelphiService($http,AuthenticationService) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         //CORS Ajax
 //        Access-Control-Allow-Origin: *
@@ -53,3 +53,4 @@ angular.module('smartBuyPortalApp')
 
         };
     });
+});

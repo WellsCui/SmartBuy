@@ -9,7 +9,7 @@
  */
 
 smartBuyPortalApp
-  .controller('SearchCtrl', function ($scope,SearchService,AuthenticationService) {
+  .controller('SearchController', function ($scope,SearchService,AuthenticationService) {
 	$scope.toFind = '';
 
 
