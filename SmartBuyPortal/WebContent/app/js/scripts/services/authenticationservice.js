@@ -1,5 +1,5 @@
 'use strict';
-define(['app','Base64'], function (app) {
+define(['app','base64'], function (app) {
 /**
  * @ngdoc service
  * @name smartBuyPortalApp.Delphiservice

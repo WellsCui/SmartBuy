@@ -2,9 +2,9 @@
 define(['app','AuthenticationService'], function (app) {
 /**
  * @ngdoc service
- * @name smartBuyPortalApp.Delphiservice
+ * @name smartBuyPortalApp.SearchService
  * @description
- * # Delphiservice
+ * # SearchService
  * Service in the smartBuyPortalApp.
  */
 app

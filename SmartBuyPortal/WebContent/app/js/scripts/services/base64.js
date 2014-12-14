@@ -2,12 +2,24 @@
 
 /**
  * @ngdoc service
- * @name smartBuyPortalApp.Delphiservice
+ * @name smartBuyPortalApp.Base64
  * @description
- * # Delphiservice
+ * # Base64
  * Service in the smartBuyPortalApp.
  */
 define(['app'], function (app) {
+    if (!String.prototype.format) {
+        String.prototype.format = function () {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function (match, number) {
+                return typeof args[number] != 'undefined'
+                    ? args[number]
+                    : match
+                    ;
+            });
+        };
+    }
+
     app.
         factory('Base64', function () {
             var keyStr = 'ABCDEFGHIJKLMNOP' +

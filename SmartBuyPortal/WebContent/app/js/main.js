@@ -12,11 +12,11 @@ require.config({
      //   'ngload': '../../bower_components/requirejs/ngload',
         'bootstrap': '../../bower_components/bootstrap/js/bootstrap',
         //'prettify': '../../bower_components/google-code-prettify/prettify',
-        'underscore' : '../../bower_components/underscore/underscore',
-        'MainController': 'controllers/main',
+        //'underscore' : '../../bower_components/underscore/underscore',
+        'HomeController': 'controllers/homecontroller',
         'SearchBarController': 'controllers/searchbar',
 
-        'Base64': 'services/Base64',
+        'base64': 'services/base64',
         'AuthenticationService': 'services/authenticationservice',
         'DelphiService': 'services/delphiservice',
         'SearchService': 'services/searchservice'
@@ -26,10 +26,10 @@ require.config({
     shim: {
         'angularAMD': ['angular'],
         'angular-route': ['angular'],
-        'angular-cookies': ['angular'],
-        'underscore' : {
+        'angular-cookies': ['angular']
+        /*'underscore' : {
             exports: '_'
-        }
+        }*/
     },
 
     // kick start application

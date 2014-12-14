@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name smartBuyPortalApp.controller:MainCtrl
+ * @name smartBuyPortalApp.controller:HomeController
  * @description
- * # MainCtrl
+ * # HomeController
  * Controller of the smartBuyPortalApp
  */
 define(['app', 'DelphiService', 'AuthenticationService','controllers/searchbar'], function (app) {
     app
-  .controller('MainController', function ($scope,DelphiService,AuthenticationService) {
+  .controller('HomeController', function ($scope,DelphiService,AuthenticationService) {
 
 	$scope.awesomeThings = [
 	'HTML5 Boilerplate',
