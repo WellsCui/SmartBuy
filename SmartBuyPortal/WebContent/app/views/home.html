@@ -1,41 +1,24 @@
-<!--<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>-->
+
+<div>
+
+    <div ng-include="'views/searchbar.html'"
+         ng-controller="SearchBarController"></div>
+
+    <!--<input id="edtName" value="{{name}}"/>-->
+    <!--<button id="btnLogName" ng-click="logName()">LogName</button>-->
+</div>
+
+
+
 <!--
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-   require(['controllers/searchbar']);
-,function() {console.log(' require success...')}
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>-->
-
-<div ng-include="'views/searchbar.html'"
-     onload="console.log(' loading searchbar controller...');"
-     ng-controller="SearchBarController"
-     ></div>
-
-<button id="btnLogin" ng-click="login()">login</button>
-  <button id="btnGetVehicleStatus" ng-click="getStatus()">GetVehicleStatus</button>
+    <button id="btnLogin" ng-click="login()">login</button>
+    <button id="btnGetVehicleStatus" ng-click="getStatus()">GetVehicleStatus</button>
     <button id="btnUpdateVehicleStatus" ng-click="updateStatus()">UpdateVehicleStatus</button>
     <p>
         current Vehicle Status:
     </p>
-<label>greetingMsg: </label><label id="lbl_greetingMsg">{{greetingMsg}}</label>
-<label>longtitude: </label><label id="lbl_currentStatus_longtitude">{{currentStatus.longtitude}}</label>
-<label>latitude: </label><label id="lbl_currentStatus_latitude">{{currentStatus.latitude}}</label>
-</div>
+    <label>greetingMsg: </label><label id="lbl_greetingMsg">{{greetingMsg}}</label>
+    <label>longtitude: </label><label id="lbl_currentStatus_longtitude">{{currentStatus.longtitude}}</label>
+    <label>latitude: </label><label id="lbl_currentStatus_latitude">{{currentStatus.latitude}}</label>-->
+
 

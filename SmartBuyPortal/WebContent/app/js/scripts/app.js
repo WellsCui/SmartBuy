@@ -1,5 +1,5 @@
 'use strict';
-define(['angularAMD', 'angular-route','angular-cookies'], function (angularAMD) {
+define(['angularAMD', 'angular-route', 'angular-cookies'], function (angularAMD) {
     /**
      * @ngdoc overview
      * @name smartBuyPortalApp
@@ -21,8 +21,14 @@ define(['angularAMD', 'angular-route','angular-cookies'], function (angularAMD) 
         .config(function ($routeProvider, $locationProvider) {
 
             $routeProvider
+                .when("/", angularAMD.route({
+                    templateUrl: 'views/home.html', controller: 'HomeController', navTab: "home"
+                }))
                 .when("/home", angularAMD.route({
                     templateUrl: 'views/home.html', controller: 'HomeController', navTab: "home"
+                }))
+                .when("/search", angularAMD.route({
+                    templateUrl: 'views/search.html', controller: 'SearchController', navTab: "search"
                 }));
 
             // configure html5 to get links working on jsfiddle
@@ -32,7 +38,7 @@ define(['angularAMD', 'angular-route','angular-cookies'], function (angularAMD) 
     return angularAMD.bootstrap(app);
 });
 /*angular.module('smartBuyPortalApp').directive('ncgRequestVerificationToken', ['$http', function ($http) {
-    return function (scope, element, attrs) {
-        $http.defaults.headers.common['RequestVerificationToken'] = attrs.ncgRequestVerificationToken || "no request verification token";
-    };
-}]);*/
+ return function (scope, element, attrs) {
+ $http.defaults.headers.common['RequestVerificationToken'] = attrs.ncgRequestVerificationToken || "no request verification token";
+ };
+ }]);*/

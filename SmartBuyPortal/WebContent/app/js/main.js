@@ -1,20 +1,21 @@
 require.config({
 
     baseUrl: "js/scripts",
-    
-	// alias libraries paths
+
+    // alias libraries paths
     paths: {
         'angular': '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
         'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
-      //  'async': '../../bower_components/requirejs/async',
+        //  'async': '../../bower_components/requirejs/async',
         'angularAMD': '../../bower_components/angularAMD/angularAMD',
-     //   'ngload': '../../bower_components/requirejs/ngload',
+        //   'ngload': '../../bower_components/requirejs/ngload',
         'bootstrap': '../../bower_components/bootstrap/js/bootstrap',
         //'prettify': '../../bower_components/google-code-prettify/prettify',
         //'underscore' : '../../bower_components/underscore/underscore',
         'HomeController': 'controllers/homecontroller',
-        'SearchBarController': 'controllers/searchbar',
+        'SearchController': 'controllers/searchcontroller',
+        'SearchBarController': 'controllers/searchbarcontroller',
 
         'base64': 'services/base64',
         'AuthenticationService': 'services/authenticationservice',
@@ -28,8 +29,8 @@ require.config({
         'angular-route': ['angular'],
         'angular-cookies': ['angular']
         /*'underscore' : {
-            exports: '_'
-        }*/
+         exports: '_'
+         }*/
     },
 
     // kick start application

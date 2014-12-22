@@ -1,7 +1,5 @@
 <div>
-
-<input id="edtSearch">{{toFind}}</input>
-
-<button id="btnSearch" ng-click="search()">Search</button>
-
+    <input id="edtSearch" value="{{toFind}}"/>
+    <a ng-href="search?toFind={{toFind}}">Search</a>
+    <!--<button id="btnSearch" ng-click="search()">Search</button>-->
 </div>
