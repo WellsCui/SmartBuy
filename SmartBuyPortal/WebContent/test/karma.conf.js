@@ -12,13 +12,14 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'requirejs'],
 
     // list of files / patterns to load in the browser
     files: [
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/scripts/**/*.js',
+      'test/main.js',
+      'app/js/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
