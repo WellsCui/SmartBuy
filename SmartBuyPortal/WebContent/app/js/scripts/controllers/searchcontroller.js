@@ -10,9 +10,16 @@
 define(['app', 'AuthenticationService', 'SearchService'], function (app) {
 
     app
-        .controller('SearchController', function ($scope, SearchService, AuthenticationService) {
-            $scope.toFind = '';
+        .controller('SearchController', function ($scope, $location, SearchService, AuthenticationService) {
+
+            $scope.toFind = undefined;
             $scope.searchResult=[];
+
+            $scope.init = function () {
+                $scope.toFind=($location.search()).toFind;
+                if ($scope.toFind!=undefined)
+                $scope.search();
+            }
 
             $scope.search = function () {
              
@@ -23,6 +30,8 @@ define(['app', 'AuthenticationService', 'SearchService'], function (app) {
                 });
 
             };
+
+            $scope.init();
 
 
         });
