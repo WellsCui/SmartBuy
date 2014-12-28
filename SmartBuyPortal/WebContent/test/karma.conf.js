@@ -6,7 +6,7 @@
 module.exports = function(config) {
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    //autoWatch: true,
 
     // base path, that will be used to resolve files and exclude
     basePath: '../',
@@ -16,12 +16,16 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'test/main.js',
-      'app/js/scripts/**/*.js',
+        {pattern: 'app/bower_components/**/*.js', included: false},
+        {pattern: 'app/js/scripts/**/*.js', included: false},
+        {pattern: 'test/spec/**/*.js', included: false},
+      //'app/bower_components/angular/angular.js',
+      //'app/bower_components/angular-mocks/angular-mocks.js',
+     //   {pattern: 'test/require.conf.js', included: true},
+      'test/require.conf.js',
+      //'app/js/scripts/**/*.js',
       'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      //'test/spec/**/*.js'
     ],
 
     // list of files / patterns to exclude
@@ -42,21 +46,22 @@ module.exports = function(config) {
       'PhantomJS'
     ],
 
-    // Which plugins to enable
+    //Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-requirejs'
     ],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    singleRun: true,
 
     colors: true,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_INFO
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {

@@ -7,6 +7,8 @@ define(['app', 'base64'], function (app) {
      * # Delphiservice
      * Service in the smartBuyPortalApp.
      */
+
+    console.log("registering AuthenticationService...");
     var accessToken = null;
     var accessTokenUrl = "http://localhost:8080/smartbuy-webapi/apilogin?loginType={0}&&username={1}&&password={2}&&oauthToken={3}";
     var greetingUrl = "http://localhost:8080/smartbuy-webapi/api/greeting";

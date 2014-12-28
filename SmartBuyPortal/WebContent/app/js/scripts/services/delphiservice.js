@@ -1,5 +1,6 @@
 'use strict';
 define(['app', 'AuthenticationService'], function (app) {
+    console.log("registering DelphiService...");
     /**
      * @ngdoc service
      * @name smartBuyPortalApp.Delphiservice

@@ -1,12 +1,15 @@
+/*
 'use strict';
 
+*/
 /**
  * @ngdoc function
  * @name smartBuyPortalApp.controller:MainCtrl
  * @description
  * # MainCtrl
  * Controller of the smartBuyPortalApp
- */
+ *//*
+
 
 smartBuyPortalApp.controller('PhoneListCtrl', function ($scope) {
     $scope.phones = [
@@ -18,3 +21,4 @@ smartBuyPortalApp.controller('PhoneListCtrl', function ($scope) {
             'snippet': 'The Next, Next Generation tablet.'}
     ];
 });
+*/

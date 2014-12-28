@@ -1,5 +1,6 @@
 'use strict';
 define(['app', 'AuthenticationService'], function (app) {
+    console.log("registering SearchService...");
     /**
      * @ngdoc service
      * @name smartBuyPortalApp.SearchService

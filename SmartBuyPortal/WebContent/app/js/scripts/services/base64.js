@@ -19,7 +19,7 @@ define(['app'], function (app) {
             });
         };
     }
-
+    console.log("registering Base64...");
     app.
         factory('Base64', function () {
             var keyStr = 'ABCDEFGHIJKLMNOP' +
