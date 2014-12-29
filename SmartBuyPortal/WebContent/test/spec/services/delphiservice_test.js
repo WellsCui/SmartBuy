@@ -1,6 +1,6 @@
 'use strict';
 'use strict';
-define(['angularAMD','DelphiService'], function (angularAMD) {
+define(['angularAMD','DelphiService','angular-mocks'], function (angularAMD) {
 
     describe('DelphiService.js', function () {
         console.log('### Running DelphiService_test.js');
@@ -9,10 +9,10 @@ define(['angularAMD','DelphiService'], function (angularAMD) {
         beforeEach(function () {
             module('smartBuyPortalApp')
             //inject(function ($controller, $rootScope, $q,_$httpBackend_,_Delphiservice_, _AuthenticationService_) {
-            angularAMD.inject(function ($rootScope, $controller, $q, _$httpBackend_, _Delphiservice_) {
+            angularAMD.inject(function ($rootScope, $controller, $q, _$httpBackend_, _DelphiService_) {
                 scope = $rootScope.$new();
                 $httpBackend=_$httpBackend_;
-                service = _Delphiservice_;
+                service = _DelphiService_;
 
             });
         });
