@@ -21,7 +21,6 @@
     if (firstFile) {
         testFiles.unshift(firstFile);
     }
-
     testFiles.unshift('angular-mocks');
 
     var index;
@@ -59,10 +58,10 @@
 
         // Add angular modules that does not support AMD out of the box, put it in a shim
         shim: {
-            'angularAMD': ['angular'],
             'angular-route': ['angular'],
             'angular-cookies': ['angular'],
-            'angular-mocks': ['angular']
+            'angular-mocks': ['angular'],
+            'angularAMD': ['angular','angular-mocks']
         },
         // ask Require.js to load these files (all our tests)
         deps: testFiles,

@@ -17,10 +17,10 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         {pattern: 'app/bower_components/**/*.js', included: false},
-        {pattern: 'app/js/scripts/**/*.js', included: false},
-        {pattern: 'test/spec/**/*.js', included: false},
       //'app/bower_components/angular/angular.js',
       //'app/bower_components/angular-mocks/angular-mocks.js',
+        {pattern: 'app/js/scripts/**/*.js', included: false},
+        {pattern: 'test/spec/**/*.js', included: false},
      //   {pattern: 'test/require.conf.js', included: true},
       'test/require.conf.js',
       //'app/js/scripts/**/*.js',

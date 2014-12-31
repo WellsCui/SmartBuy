@@ -19,14 +19,16 @@ define([ 'angularAMD', 'HomeController'], function ( angularAMD) {
             }
         };
         beforeEach(function () {
-            //inject(function ($controller, $rootScope, $q,_$httpBackend_,_Delphiservice_, _AuthenticationService_) {
-            angularAMD.inject(function ($rootScope, $controller, $q, _$httpBackend_) {
+            angular.mock.module('smartBuyPortalApp');
+            angular.mock.inject(function ($rootScope, $controller, $q, _$httpBackend_) {
+            //inject(function ($controller, $rootScope, $q,_$httpBackend_) {
+            //angularAMD.inject(function ($rootScope, $controller, $q, _$httpBackend_) {
                 scope = $rootScope.$new();
                 $httpBackend=_$httpBackend_;
                 q=$q;
                 homeCtrl = $controller('HomeController', {
                     $scope: scope,
-                    Delphiservice: apiService
+                    DelphiService: apiService
                     //AuthenticationService:_AuthenticationService_
                 });
 
@@ -38,7 +40,7 @@ define([ 'angularAMD', 'HomeController'], function ( angularAMD) {
         });
 
         it('should request current status when created', function () {
-            spyOn(apiService, 'getStatus').andCallThrough();
+            spyOn(apiService, 'getStatus').and.callThrough();
             scope.getStatus();
             expect(apiService.getStatus).toHaveBeenCalled();
             var status={lontitude:40.01, latitude:100.1, spead:81.0, rpm:3000 };

@@ -46,7 +46,7 @@ define(['app', 'DelphiService', 'AuthenticationService', 'SearchBarController'],
             $scope.getStatus = function () {
 
                 // $scope.currentStatus={longtitude:40.01, latitude:100.1, speed:81.0, rpm:3000 };
-                Delphiservice.getStatus().then(function (status) {
+                DelphiService.getStatus().then(function (status) {
                     $scope.currentStatus = status;
                     //$scope.$apply();
                 }, function (error) {
