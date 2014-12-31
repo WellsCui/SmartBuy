@@ -1,6 +1,6 @@
 'use strict';
 
-define(['angularAMD','DelphiService'], function (angularAMD) {
+define(['DelphiService'], function () {
 
     describe('DelphiService.js', function () {
         console.log('### Running DelphiService_test.js');

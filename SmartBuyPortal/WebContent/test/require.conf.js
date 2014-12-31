@@ -61,7 +61,7 @@
             'angular-route': ['angular'],
             'angular-cookies': ['angular'],
             'angular-mocks': ['angular'],
-            'angularAMD': ['angular','angular-mocks']
+            'angularAMD': ['angular']
         },
         // ask Require.js to load these files (all our tests)
         deps: testFiles,
