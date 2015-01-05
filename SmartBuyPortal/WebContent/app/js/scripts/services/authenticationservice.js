@@ -12,18 +12,19 @@ define(['app', 'base64'], function (app) {
     var accessToken = null;
     var accessTokenUrl = "http://localhost:8080/smartbuy-webapi/apilogin?loginType={0}&&username={1}&&password={2}&&oauthToken={3}";
     var greetingUrl = "http://localhost:8080/smartbuy-webapi/api/greeting";
-    var loginUrl = "http://localhost:8080/smartbuy-webapi/api/login";
+    var loginUrl = "api/login";
     var CSRF_COOKIE_NAME = "XSRF-TOKEN";
     var CSRF_HEADER_NAME = "X-XSRF-TOKEN";
 
     var Authorization_HEADER_NAME = "Authorization";
     app
-        .service('AuthenticationService', function AuthenticationService($http, $cookies, $browser, $q, Base64) {
+        .service('AuthenticationService', function AuthenticationService($http, $cookies, $browser, $q, Base64, ENVIRONMENT) {
+            console.log("environment.webApiUrl:"+ENVIRONMENT.webApiUrl);
 
             this.login = function (loginType, username, password, oauthToken) {
                 this.setCredentials(username, password);
                 var headers = this.buildCSRFHeader();
-                return $http.get(loginUrl,
+                return $http.get(ENVIRONMENT.webApiUrl.concat(ENVIRONMENT.loginPath),
                     {
                         headers: headers
                     })
@@ -64,8 +65,6 @@ define(['app', 'base64'], function (app) {
                 //header['Content-Type']= 'text/plain; charset=utf-8';
                 return header;
             }
-
-            //$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
 
             this.setCredentials = function (username, password) {
                 var encoded = Base64.encode(username + ':' + password);

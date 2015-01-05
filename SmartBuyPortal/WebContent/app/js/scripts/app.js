@@ -10,6 +10,12 @@ define(['angularAMD', 'angular-route', 'angular-cookies'], function (angularAMD)
      */
 
     var app = angular.module('smartBuyPortalApp', ['ng', 'ngCookies', 'ngRoute']);
+    var environment={};
+    environment.webApiUrl="http://localhost:8080/smartbuy-webapi/api/";
+    environment.CSRF_HEADER_NAME="X-XSRF-TOKEN";
+    environment.loginPath="login";
+    app.value('debug', true)
+    .constant('ENVIRONMENT', environment);
     app
         .config(function ($httpProvider) {
             $httpProvider.defaults.headers.common = {};
