@@ -28,13 +28,13 @@ define(['angularAMD', 'angular-route', 'angular-cookies'], function (angularAMD)
 
             $routeProvider
                 .when("/", angularAMD.route({
-                    templateUrl: 'views/home.html', controller: 'HomeController', navTab: "home"
+                    templateUrl: 'views/pages/home.html', controller: 'HomeController', navTab: "home"
                 }))
                 .when("/home", angularAMD.route({
-                    templateUrl: 'views/home.html', controller: 'HomeController', navTab: "home"
+                    templateUrl: 'views/pages/home.html', controller: 'HomeController', navTab: "home"
                 }))
                 .when("/search", angularAMD.route({
-                    templateUrl: 'views/search.html', controller: 'SearchController', navTab: "search"
+                    templateUrl: 'views/pages/search.html', controller: 'SearchController', navTab: "search"
                 }));
 
             // configure html5 to get links working on jsfiddle

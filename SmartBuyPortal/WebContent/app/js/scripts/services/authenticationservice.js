@@ -10,11 +10,8 @@ define(['app', 'base64'], function (app) {
 
     console.log("registering AuthenticationService...");
     var accessToken = null;
-    var accessTokenUrl = "http://localhost:8080/smartbuy-webapi/apilogin?loginType={0}&&username={1}&&password={2}&&oauthToken={3}";
+
     var greetingUrl = "http://localhost:8080/smartbuy-webapi/api/greeting";
-    var loginUrl = "api/login";
-    var CSRF_COOKIE_NAME = "XSRF-TOKEN";
-    var CSRF_HEADER_NAME = "X-XSRF-TOKEN";
 
     var Authorization_HEADER_NAME = "Authorization";
     app
@@ -30,7 +27,7 @@ define(['app', 'base64'], function (app) {
                     })
                     .then(
                     function (respond) {
-                        $http.defaults.headers.common[CSRF_HEADER_NAME] = respond.data
+                        $http.defaults.headers.common[ENVIRONMENT.CSRF_HEADER_NAME] = respond.data
                         return respond.data;
                     },
                     function (error) {

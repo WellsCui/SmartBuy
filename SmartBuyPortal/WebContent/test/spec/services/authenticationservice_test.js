@@ -36,6 +36,8 @@ define(['AuthenticationService'], function () {
             $httpBackend.flush();
             expect(result).toBe(fakeCSRFToken);
 
+            expect($http.defaults.headers.common[ENVIRONMENT.CSRF_HEADER_NAME]).toBe(fakeCSRFToken);
+
         });
     });
 });
