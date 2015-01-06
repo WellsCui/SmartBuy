@@ -1,0 +1,22 @@
+
+<div>
+
+    <div ng-include="'views/searchbar.html'"
+         ng-controller="SearchBarController"></div>
+    <button id="btnLogin" ng-click="login()">login</button>
+    <button id="btnGetVehicleStatus" ng-click="getStatus()">GetVehicleStatus</button>
+    <button id="btnUpdateVehicleStatus" ng-click="updateStatus()">UpdateVehicleStatus</button>
+    <p>
+        current Vehicle Status:
+    </p>
+    <label>greetingMsg: </label><label id="lbl_greetingMsg">{{greetingMsg}}</label>
+    <label>longtitude: </label><label id="lbl_currentStatus_longtitude">{{currentStatus.longtitude}}</label>
+    <label>latitude: </label><label id="lbl_currentStatus_latitude">{{currentStatus.latitude}}</label>
+
+</div>
+
+
+
+
+
+
