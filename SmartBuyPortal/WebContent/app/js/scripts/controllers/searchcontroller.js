@@ -18,7 +18,19 @@ define(['app', 'AuthenticationService', 'SearchService'], function (app) {
             $scope.init = function () {
                 $scope.toFind=($location.search()).toFind;
                 if ($scope.toFind!=undefined)
-                $scope.search();
+                    $scope.search();
+                $scope.searchResult.push(
+                    {
+                        name:"iphone6",
+                        description:"apple iphone6"
+                    }
+                );
+                $scope.searchResult.push(
+                    {
+                        name:"iphone5",
+                        description:"apple iphone6"
+                    }
+                );
             }
 
             $scope.search = function () {
@@ -34,6 +46,13 @@ define(['app', 'AuthenticationService', 'SearchService'], function (app) {
             $scope.init();
 
 
+        })
+        .directive('searchresult', function() {
+            return {
+                templateUrl: function(elem, attr){
+                    return 'views/templates/searchresult.html';
+                }
+            };
         });
 
 });

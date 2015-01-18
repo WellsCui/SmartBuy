@@ -7,7 +7,7 @@
  * # HomeController
  * Controller of the smartBuyPortalApp
  */
-define(['app', 'DelphiService', 'AuthenticationService', 'SearchBarController'], function (app) {
+define(['app', 'DelphiService', 'AuthenticationService'], function (app) {
     console.log("registering Home controller...");
     app
         .controller('HomeController', function ($scope, DelphiService, AuthenticationService) {

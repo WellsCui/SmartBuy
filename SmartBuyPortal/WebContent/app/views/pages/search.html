@@ -1,7 +1,7 @@
 <div>
-
-    <input id="edtSearch"  ng-model="toFind" />
-
-<button id="btnSearch" ng-click="search()">Search</button>
-
+    <div id="searchResult">
+        <div ng-repeat="item in searchResult">
+            <searchresult></searchresult>
+        </div>
+    </div>
 </div>

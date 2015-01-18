@@ -16,6 +16,7 @@ require.config({
         'HomeController': 'controllers/homecontroller',
         'SearchController': 'controllers/searchcontroller',
         'SearchBarController': 'controllers/searchbarcontroller',
+        'HeaderController': 'controllers/headercontroller',
 
         'base64': 'services/base64',
         'AuthenticationService': 'services/authenticationservice',
@@ -34,7 +35,7 @@ require.config({
     },
 
     // kick start application
-    deps: ['app']
+    deps: ['app','HeaderController']
 });
 
 

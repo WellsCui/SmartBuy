@@ -10,7 +10,7 @@
 define(['app'], function (app) {
     console.log("registering searchbar controller");
     app
-        .controller('SearchBarController', function ($scope, AuthenticationService) {
+        .controller('SearchBarController', function ($scope) {
             $scope.toFind = 'EntertoFind';
 
           /*  $scope.search = function () {

@@ -8,7 +8,7 @@ define(['angularAMD', 'angular-route', 'angular-cookies'], function (angularAMD)
      *
      * Main module of the application.
      */
-
+    console.log("initiating app...");
     var app = angular.module('smartBuyPortalApp', ['ng', 'ngCookies', 'ngRoute']);
     var environment={};
     environment.webApiUrl="http://localhost:8080/smartbuy-webapi/api/";
@@ -41,6 +41,7 @@ define(['angularAMD', 'angular-route', 'angular-cookies'], function (angularAMD)
             $locationProvider.html5Mode(true);
 
         });
+    console.log("angularAMD bootstrap...");
     return angularAMD.bootstrap(app);
 });
 /*angular.module('smartBuyPortalApp').directive('ncgRequestVerificationToken', ['$http', function ($http) {
