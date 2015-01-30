@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the smartBuyPortalApp
  */
-define(['app', 'SearchBarController'], function (app) {
+define(['app', 'SearchBarController','NavigationBarController'], function (app) {
     console.log("registering header controller");
     app
         .controller('HeaderController', function ($scope) {
