@@ -17,6 +17,7 @@ require.config({
         'SearchController': 'controllers/searchcontroller',
         'SearchBarController': 'controllers/searchbarcontroller',
         'NavigationBarController': 'controllers/navigationbarcontroller',
+        'AccountBarController': 'controllers/accountbarcontroller',
         'HeaderController': 'controllers/headercontroller',
 
         'base64': 'services/base64',

@@ -1,13 +1,39 @@
-<div class="header">
+<div id="navbar" class="header">
     <div ng-include="'views/partialviews/navigationbar.html'"
          ng-controller="NavigationBarController"></div>
-    <!--<ul class="nav nav-pills pull-right">
-        <li class="active"><a ng-href="home">Home</a></li>
-        <li><a ng-href="search">Search</a></li>
-        <li><a ng-href="#">Contact</a></li>
-        <li><a ng-href="#">About</a></li>
-    </ul>-->
 
-    <div ng-include="'views/partialviews/searchbar.html'"
-         ng-controller="SearchBarController"></div>
+
+
+    <div id="nav-bar-outer">
+
+        <div id="nav-logo-borderfade"><div class="nav-fade-mask"></div><div class="nav-fade nav-sprite"></div></div>
+
+        <div id="nav-bar-inner" class="nav-sprite">
+
+            <div id="nav-bar-left">
+                <a id="nav-shop-all-button" href="http://www.amazon.ca/gp/site-directory/ref=nav_sad" class="nav_a nav-button-outer nav-menu-active" alt="Shop By Department" data-nav-tabindex="9" tabindex="1">
+                    <span class="nav-button-title nav-button-line1">Shop by</span>
+                    <span class="nav-button-title nav-button-line2">Department<span class="nav-down-arrow"></span></span>
+                </a>
+            </div>
+
+            <div id="nav-bar-right">
+
+                <div ng-include="'views/partialviews/accountbar.html'"
+                     ng-controller="AccountBarController"></div>
+
+
+            </div>
+
+            <div id="nav-bar-middle">
+                <div ng-include="'views/partialviews/searchbar.html'"
+                     ng-controller="SearchBarController"></div>
+
+            </div>
+
+        </div><div id="nav-subnav-container">
+        <ul id="nav-subnav" data-category="yourstore" data-digest="Cd/f509viMwVJi4QE0KYkjL6580">
+            <li class="nav-subnav-item nav-category-button"><a href="http://www.amazon.ca/gp/yourstore/home/ref=topnav_storetab_ys" class="nav_a" data-nav-tabindex="17" tabindex="1">Your Store</a></li><li class="nav-subnav-item"><a href="http://www.amazon.ca/gp/history/ref=sv_ys_0" class="nav_a" data-nav-tabindex="17" tabindex="1">Your Browsing History</a></li><li class="nav-subnav-item"><a href="http://www.amazon.ca/gp/yourstore/recs/ref=sv_ys_1" class="nav_a" data-nav-tabindex="17" tabindex="1">Recommended For You</a></li><li class="nav-subnav-item"><a href="http://www.amazon.ca/gp/yourstore/iyr/ref=sv_ys_2" class="nav_a" data-nav-tabindex="17" tabindex="1">Improve Your Recommendations</a></li><li class="nav-subnav-item"><a href="http://www.amazon.ca/gp/pdp/profile/ref=sv_ys_3" class="nav_a" data-nav-tabindex="17" tabindex="1">Your Profile</a></li><li class="nav-subnav-item"><a href="http://www.amazon.ca/gp/help/customer/display.html/ref=sv_ys_4?ie=UTF8&amp;nodeId=1162208" class="nav_a" data-nav-tabindex="17" tabindex="1">Learn More</a></li>          </ul>
+    </div>
+    </div>
 </div>
