@@ -52,7 +52,26 @@ define(['app'], function (app) {
                     }
                 );
 
+                if (sessionStorage.account!==undefined)
+                {
+                    $scope.account=JSON.parse(sessionStorage.account);
+                }
 
+                else
+                    $scope.account= {
+                        name: "signin"
+                    }
+            }
+
+            $scope.signin = function() {
+                $scope.account=
+                {
+                    name: "username001"
+
+                };
+
+                sessionStorage.setItem('account', JSON.stringify($scope.account));
+                console.log("username001 signed in.");
             }
 
             $scope.init();

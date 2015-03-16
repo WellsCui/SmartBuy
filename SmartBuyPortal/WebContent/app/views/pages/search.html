@@ -1,7 +1,58 @@
-<div>
-    <div id="searchResult">
-        <div ng-repeat="item in searchResult">
-            <searchresult></searchresult>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/bower_components/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <base href="/">
+    <!-- endbuild -->
+</head>
+
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div class="container">
+
+    <div ng-include="'views/partialviews/header.html'"
+         ng-controller="HeaderController"></div>
+
+    <div ng-controller="SearchController">
+        <div id="searchResult">
+            <div ng-repeat="item in searchResult">
+                <searchresult></searchresult>
+            </div>
         </div>
     </div>
+
+    <div class="footer">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+    </div>
 </div>
+
+<!--<script data-main="js/require.conf.js" src="bower_components/requirejs/require.js">
+
+</script>-->
+
+<script src="/bower_components/requirejs/require.js"></script>
+<script>
+    require(['../../js/require.conf.js'], function() {
+        // Configuration loaded now, safe to do other require calls
+        // that depend on that config.
+        require(['SearchController'], function(searchController) {
+
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
+
+

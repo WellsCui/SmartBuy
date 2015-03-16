@@ -23,24 +23,24 @@ define(['angularAMD', 'angular-route', 'angular-cookies'], function (angularAMD)
 
 
         });
-    app
-        .config(function ($routeProvider, $locationProvider) {
+//    app
+//        .config(function ($routeProvider, $locationProvider) {
+//
+//            $routeProvider
+//                .when("/", angularAMD.route({
+//                    templateUrl: 'views/pages/home.html', controller: 'HomeController', navTab: "home"
+//                }))
+//                .when("/home", angularAMD.route({
+//                    templateUrl: 'views/pages/home.html', controller: 'HomeController', navTab: "home"
+//                }))
+//                .when("/search", angularAMD.route({
+//                    templateUrl: 'views/pages/search.html', controller: 'SearchController', navTab: "search"
+//                }));
 
-            $routeProvider
-                .when("/", angularAMD.route({
-                    templateUrl: 'views/pages/home.html', controller: 'HomeController', navTab: "home"
-                }))
-                .when("/home", angularAMD.route({
-                    templateUrl: 'views/pages/home.html', controller: 'HomeController', navTab: "home"
-                }))
-                .when("/search", angularAMD.route({
-                    templateUrl: 'views/pages/search.html', controller: 'SearchController', navTab: "search"
-                }));
-
-            // configure html5 to get links working on jsfiddle
-            $locationProvider.html5Mode(true);
-
-        });
+//            // configure html5 to get links working on jsfiddle
+//            $locationProvider.html5Mode(true);
+//
+//        });
     console.log("angularAMD bootstrap...");
     return angularAMD.bootstrap(app);
 });
